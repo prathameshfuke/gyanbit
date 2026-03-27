@@ -1,11 +1,19 @@
 // ── Retro Loader ───────────────────────────────────────
-window.addEventListener('load', () => {
-  const loader = document.getElementById('retro-loader');
-  if (loader) {
+const loader = document.getElementById('retro-loader');
+if (loader) {
+  const hideLoader = () => {
     loader.style.opacity = '0';
     setTimeout(() => loader.remove(), 800);
+  };
+
+  if (document.readyState === 'complete') {
+    // If we're already fully loaded in production, dismiss instantly
+    hideLoader();
+  } else {
+    // Otherwise wait for the load event
+    window.addEventListener('load', hideLoader);
   }
-});
+}
 
 // ── Scroll Reveal ──────────────────────────────────────
 const revealObserver = new IntersectionObserver(
