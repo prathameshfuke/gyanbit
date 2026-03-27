@@ -49,6 +49,21 @@ npm run dev
 
 Open `http://localhost:5173` in your browser to see the landing page.
 
+### 🔺 Deploying to Vercel (Production)
+
+Because this repository contains the `gyanbit-studio` sub-folder, follow these exact steps to host your site for free on Vercel:
+
+1. Go to [Vercel](https://vercel.com/) and click **Add New → Project**.
+2. Import your `prathameshfuke/gyanbit` GitHub repository.
+3. **CRITICAL STEP**: Click `Edit` next to **Root Directory** and select `gyanbit-studio`.
+4. The remaining settings will auto-detect correctly:
+   - **Framework Preset**: Vite
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+5. Click **Deploy!**
+
+Your entire Landing Page, Docs, and Web IDE will be live worldwide in under a minute!
+
 ---
 
 ## 📁 Project Structure
