@@ -24,19 +24,11 @@
       (function() {
         const loader = document.getElementById('retro-loader');
         if (loader) {
-          let isHidden = false;
-          const hideLoader = () => {
-            if (isHidden) return;
-            isHidden = true;
+          // Force hide after 1.5s no matter what
+          setTimeout(() => {
             loader.style.opacity = '0';
             setTimeout(() => loader.remove(), 800);
-          };
-          if (document.readyState === 'complete') {
-            hideLoader();
-          } else {
-            window.addEventListener('load', hideLoader);
-            setTimeout(hideLoader, 1500); // Failsafe fallback
-          }
+          }, 1000);
         }
       })();
     </script>
