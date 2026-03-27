@@ -1,4 +1,6 @@
-# 🎮 GyanBit — DIY Educational Game Console
+<p align="center">
+  <img src="public/images/logo_transparent.png" alt="GyanBit Logo" width="400" />
+</p>
 
 <p align="center">
   <strong>Code games in your browser. Flash them to real hardware. Learn by playing.</strong>
