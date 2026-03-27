@@ -18,13 +18,24 @@
     </div>
 
     <script>
-      window.addEventListener('load', () => {
+      (function() {
         const loader = document.getElementById('retro-loader');
         if (loader) {
-          loader.style.opacity = '0';
-          setTimeout(() => loader.remove(), 800);
+          let isHidden = false;
+          const hideLoader = () => {
+            if (isHidden) return;
+            isHidden = true;
+            loader.style.opacity = '0';
+            setTimeout(() => loader.remove(), 800);
+          };
+          if (document.readyState === 'complete') {
+            hideLoader();
+          } else {
+            window.addEventListener('load', hideLoader);
+            setTimeout(hideLoader, 1500); // Failsafe fallback
+          }
         }
-      });
+      })();
     </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>

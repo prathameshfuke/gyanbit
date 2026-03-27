@@ -1,17 +1,20 @@
 // ── Retro Loader ───────────────────────────────────────
 const loader = document.getElementById('retro-loader');
 if (loader) {
+  let isHidden = false;
   const hideLoader = () => {
+    if (isHidden) return;
+    isHidden = true;
     loader.style.opacity = '0';
     setTimeout(() => loader.remove(), 800);
   };
 
   if (document.readyState === 'complete') {
-    // If we're already fully loaded in production, dismiss instantly
     hideLoader();
   } else {
-    // Otherwise wait for the load event
     window.addEventListener('load', hideLoader);
+    // Bulletproof failsafe: Always hide after 1.5 seconds even if an image/font hangs the load event
+    setTimeout(hideLoader, 1500);
   }
 }
 
