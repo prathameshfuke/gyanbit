@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GyanBit — What is it?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DotGothic16&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Retro Loading Screen -->
+  <div id="retro-loader" style="position:fixed;inset:0;background:#000;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s;">
+    <img src="/images/logo_transparent.png" alt="GyanBit" style="height:48px;image-rendering:pixelated;margin-bottom:20px;animation:blink 1.5s step-end infinite;">
+    <div style="font-family:'Press Start 2P', monospace;font-size:10px;color:#fff;">LOADING INFO...</div>
+  </div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo_transparent.png" alt="GyanBit Logo" style="height:38px;"> <!-- Increased logo size -->
+      </a>
+      <div class="nav-links">
+        <a href="/" style="color:var(--text-mid);">Home</a>
+        <a href="/about.html" style="color:var(--red);">About</a>
+        <a href="/docs.html">Docs</a>
+        <a href="/games.html">Games</a>
+        <a href="/hardware.html">Hardware</a>
+      </div>
+      <a href="/studio.html" class="btn btn-primary" id="open-studio-btn">Open Studio</a>
+    </div>
+  </nav>
+
+  <!-- ── WHAT IS IT? ─────────────────────────────────── -->
+  <section class="section" style="padding-top: 140px;">
+    <div class="container">
+      <div class="section-label">INTRODUCTION</div>
+      <h2 class="section-title">A console you <em>build with code</em></h2>
+      <p class="section-sub">Most game consoles are made <em>for</em> you to play. GyanBit is made <em>by</em> you — every game, every animation, every sound is written by you in the browser and runs on real electronics.</p>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">💻</div>
+          <h3>Browser IDE</h3>
+          <p>Write JavaScript with syntax highlighting, auto-formatting, and a live OLED simulator — no installs needed.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📺</div>
+          <h3>128×64 OLED Simulator</h3>
+          <p>See your code run on a pixel-perfect virtual screen before touching real hardware.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Flash to Real Hardware</h3>
+          <p>One click generates MicroPython and flashes it via WebSerial to your device. No drivers, no cables frustration.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎮</div>
+          <h3>7 Built-in Games</h3>
+          <p>Start with Flappy, Space Invaders, Snake, Breakout, Pong, Maze, and Dodger. Study the code, modify them, make them your own.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔊</div>
+          <h3>8-bit Audio</h3>
+          <p>Square-wave beeps via Web Audio API in the browser, and real PWM audio through a PAM8403 amp on hardware.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📐</div>
+          <h3>bit.* API</h3>
+          <p>Simple, purposeful commands like bit.clear(), bit.fill(), bit.text() designed explicitly for beginners.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ─────────────────────────────────── -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-label">THE WORKFLOW</div>
+      <h2 class="section-title">From syntax to silicon in <em>seconds.</em></h2>
+      <p class="section-sub">We removed the toolchains and compilation steps. It's just you, your logic, and the screen.</p>
+
+      <div class="steps-row">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Write JavaScript</h3>
+          <p>Use the simple bit.* API to draw pixels, read buttons, and create loops.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Live Simulate</h3>
+          <p>The 30fps browser engine simulates the exact boundaries and rendering of a 128x64 OLED.</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Flash RP2040</h3>
+          <p>Click FLASH. GyanBit auto-compiles JS to MicroPython and writes it to the embedded file system.</p>
+        </div>
+      </div>
+      
+      <div class="how-img-wrap">
+        <img src="/images/how-it-works.png" alt="GyanBit workflow visual" class="how-img" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo_transparent.png" alt="GyanBit Logo" style="height:38px;">
+      </a>
+      <span class="footer-note">Built for curious minds. Made in India 🇮🇳</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

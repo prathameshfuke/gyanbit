@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GyanBit — Learn to Code, Build Real Games</title>
+  <meta name="description" content="GyanBit is an 8-bit game console for Indian students. Write code, flash it to real hardware, and play your games instantly. No experience needed." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DotGothic16&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Retro Loading Screen -->
+  <div id="retro-loader" style="position:fixed;inset:0;background:#000;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s;">
+    <img src="/images/logo_transparent.png" alt="GyanBit" style="height:48px;image-rendering:pixelated;margin-bottom:20px;animation:blink 1.5s step-end infinite;">
+    <div style="font-family:'Press Start 2P', monospace;font-size:10px;color:#fff;">LOADING SYSTEM...</div>
+  </div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo_transparent.png" alt="GyanBit Logo" style="height:38px;">
+      </a>
+      <div class="nav-links">
+        <a href="/" style="color:var(--red);">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/docs.html">Docs</a>
+        <a href="/games.html">Games</a>
+        <a href="/hardware.html">Hardware</a>
+      </div>
+      <button class="btn btn-primary launch-studio" id="open-studio-btn">Open Studio</button>
+    </div>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <div class="grid-overlay"></div>
+      <div class="glow-orb glow-orb-1"></div>
+      <div class="glow-orb glow-orb-2"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge">🇮🇳 Made for Indian Students · Ages 12–17</div>
+      <h1 class="hero-title">
+        Write Code.<br/>
+        <span class="gradient-text">Play Instantly.</span><br/>
+        On Real Hardware.
+      </h1>
+      <p class="hero-sub">The 16-bit console you build with code. Write JavaScript in the browser, simulate on a virtual OLED, and instantly flash to real hardware.</p>
+          <div class="hero-cta">
+            <button class="btn btn-primary btn-lg launch-studio">
+              ▶ Launch Studio
+            </button>
+            <a href="/about.html" class="btn btn-ghost btn-lg">Learn More</a>
+          </div>
+
+      <!-- Mini code preview -->
+      <div class="hero-code-preview">
+        <div class="code-header">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="code-file">snake.js · GyanBit Studio</span>
+        </div>
+        <pre class="code-block"><span class="c-comment">// Snake — your first game in 3 lines!</span>
+<span class="c-kw">bit</span>.<span class="c-fn">loop</span>(<span class="c-kw">() =></span> {
+  <span class="c-kw">bit</span>.<span class="c-fn">clear</span>();
+  snake.<span class="c-fn">draw</span>();
+  <span class="c-kw">if</span> (<span class="c-kw">bit</span>.<span class="c-fn">isHeld</span>(<span class="c-str">'right'</span>)) snake.<span class="c-fn">move</span>();
+});</pre>
+      </div>
+    </div>
+
+    <div class="hero-device">
+      <img src="images/hero.png" alt="GyanBit hardware console" class="hero-img" />
+      <div class="hero-device-glow"></div>
+    </div>
+  </section>
+
+  <!-- ── CTA ──────────────────────────────────────────── -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-title">Ready to build your first game?</h2>
+      <p class="cta-sub">Works in any Chrome or Edge browser. No downloads, no accounts.</p>
+      <button class="btn btn-primary btn-xl launch-studio" id="bottom-cta-btn">
+        ▶ Open GyanBit Studio — Free
+      </button>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo_transparent.png" alt="GyanBit Logo">
+      </a>
+      <span class="footer-note">Built for curious minds. Made in India 🇮🇳</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

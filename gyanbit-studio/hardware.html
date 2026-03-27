@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GyanBit — Hardware</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DotGothic16&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Retro Loading Screen -->
+  <div id="retro-loader" style="position:fixed;inset:0;background:#000;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s;">
+    <img src="/images/logo_transparent.png" alt="GyanBit" style="height:48px;image-rendering:pixelated;margin-bottom:20px;animation:blink 1.5s step-end infinite;">
+    <div style="font-family:'Press Start 2P', monospace;font-size:10px;color:#fff;">LOADING SCHEMA...</div>
+  </div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo_transparent.png" alt="GyanBit Logo" style="height:38px;">
+      </a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/docs.html">Docs</a>
+        <a href="/games.html">Games</a>
+        <a href="/hardware.html" style="color:var(--red);">Hardware</a>
+      </div>
+      <a href="/studio.html" class="btn btn-primary" id="open-studio-btn">Open Studio</a>
+    </div>
+  </nav>
+
+  <!-- ── HARDWARE HERO ─────────────────────────────────── -->
+  <section class="section" style="padding-top: 140px;">
+    <div class="container">
+      <div class="section-label">THE PCB</div>
+      <h2 class="section-title">Inside the <em>GyanBit</em></h2>
+      <p class="section-sub">A carefully engineered, 4-layer FR4 board housing standard protocols to teach hardware fundamentals without overwhelming complexity.</p>
+
+      <div class="how-img-wrap" style="margin-bottom: 3rem;">
+        <img src="/images/hero.png" alt="GyanBit PCB hero shot" class="how-img" loading="lazy">
+      </div>
+
+      <div class="hw-grid">
+        <div class="hw-spec">
+          <div class="hw-label">MICROCONTROLLER</div>
+          <div class="hw-value">Raspberry Pi RP2040</div>
+          <p style="font-size:0.85rem;color:var(--text-mid);margin-top:6px;">Dual-core ARM Cortex-M0+ running MicroPython at 133MHz.</p>
+        </div>
+        <div class="hw-spec">
+          <div class="hw-label">DISPLAY (I2C)</div>
+          <div class="hw-value">1.3" OLED (SH1106)</div>
+          <p style="font-size:0.85rem;color:var(--text-mid);margin-top:6px;">Monochrome 128x64 display driven via hardware I2C at 400kHz.</p>
+        </div>
+        <div class="hw-spec">
+          <div class="hw-label">AUDIO (PWM)</div>
+          <div class="hw-value">PAM8403 Amplifier</div>
+          <p style="font-size:0.85rem;color:var(--text-mid);margin-top:6px;">3W Class-D amp driving an 8-ohm mini speaker directly via PWM.</p>
+        </div>
+        <div class="hw-spec">
+          <div class="hw-label">STORAGE</div>
+          <div class="hw-value">2MB QSPI Flash</div>
+          <p style="font-size:0.85rem;color:var(--text-mid);margin-top:6px;">Holds the MicroPython firmware and generated `main.py` files.</p>
+        </div>
+        <div class="hw-spec">
+          <div class="hw-label">POWER</div>
+          <div class="hw-value">3.7V / USB-C</div>
+          <p style="font-size:0.85rem;color:var(--text-mid);margin-top:6px;">Runs off USB-C or an internal single-cell Li-Po battery.</p>
+        </div>
+        <div class="hw-spec">
+          <div class="hw-label">INPUT</div>
+          <div class="hw-value">6× Tactile Buttons</div>
+          <p style="font-size:0.85rem;color:var(--text-mid);margin-top:6px;">D-Pad (Up, Down, Left, Right), A, and B hooked to digital inputs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PINOUT ──────────────────────────────────────── -->
+  <section class="section section-dark">
+    <div class="container">
+      <h2 class="section-title">Hardware <em>Pinout</em></h2>
+      <p class="section-sub">Technical reference for writing advanced extensions.</p>
+
+      <div class="pin-table-wrap">
+        <table class="pin-table">
+          <thead>
+            <tr><th>COMPONENT</th><th>RP2040 PIN</th><th>INTERFACE TYPE</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>OLED SDA</td><td>GP16</td><td>I2C0 SDA (Pull-up)</td></tr>
+            <tr><td>OLED SCL</td><td>GP17</td><td>I2C0 SCL (Pull-up)</td></tr>
+            <tr><td>Audio Out</td><td>GP20</td><td>PWM (freq)</td></tr>
+            <tr><td>Button UP</td><td>GP2</td><td>Digital In</td></tr>
+            <tr><td>Button DOWN</td><td>GP3</td><td>Digital In</td></tr>
+            <tr><td>Button LEFT</td><td>GP4</td><td>Digital In</td></tr>
+            <tr><td>Button RIGHT</td><td>GP5</td><td>Digital In</td></tr>
+            <tr><td>Button A</td><td>GP6</td><td>Digital In</td></tr>
+            <tr><td>Button B</td><td>GP8</td><td>Digital In</td></tr>
+            <tr><td>Button START</td><td>GP9</td><td>Digital In</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo_transparent.png" alt="GyanBit Logo" style="height:38px;">
+      </a>
+      <span class="footer-note">Built for curious minds. Made in India 🇮🇳</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+/* =====================================================
+   GyanBit Studio — Global CSS
+   Retro Arcade × Neon Cyberpunk Terminal
+   ===================================================== */
+
+:root {
+  --green:   #34d399; /* Mint teal */
+  --cyan:    #3b82f6; /* Sega Blue */
+  --magenta: #d946ef;
+  --amber:   #f59e0b;
+  --red:     #ef4444; /* Mario red */
+  --orange:  #f97316;
+  --navy:    #1e293b; /* Slate-800 instead of deep space navy */
+  --dark:    #0f172a; /* Slate-900 */
+  --oled:    #000000;
+  --border:  #b5b09c; /* Chunky beige border */
+  --text-dim: #94a3b8;
+  --text-mid: #cbd5e1;
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-code: 'DotGothic16', monospace;
+  --font-vt: 'VT323', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--dark);
+  color: #f1f5f9;
+  font-family: var(--font-code);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Layout Shell ─────────────────────────────────── */
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  min-width: 1024px;
+  background: var(--dark);
+}
+
+.main-area {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  gap: 2px;
+  padding: 2px;
+}
+
+/* ── Left panel: Editor + Gallery ─────────────────── */
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-width: 0;
+  gap: 2px;
+  overflow: hidden;
+}
+
+/* ── Right panel: OLED + Controls ─────────────────── */
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  width: 440px;
+  flex-shrink: 0;
+  gap: 2px;
+  overflow: hidden;
+  background: var(--navy);
+  border: 4px solid var(--border);
+  border-radius: 0px;
+}
+
+/* ── Neon box border ──────────────────────────────── */
+.neon-box {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  position: relative;
+}
+
+/* ── Section header ───────────────────────────────── */
+.section-header {
+  font-family: var(--font-pixel);
+  font-size: 7px;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  padding: 4px 8px;
+  border-bottom: 2px solid var(--border);
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+
+.section-header .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* ── Pixel button base ────────────────────────────── */
+.pixel-btn {
+  font-family: var(--font-pixel);
+  font-size: 7px;
+  letter-spacing: 0.05em;
+  border: 4px solid currentColor;
+  background: var(--dark);
+  color: inherit;
+  cursor: pointer;
+  padding: 5px 10px;
+  position: relative;
+  transition: transform 80ms, box-shadow 80ms;
+  image-rendering: pixelated;
+  border-radius: 0px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  user-select: none;
+  box-shadow: 2px 2px 0 currentColor;
+}
+
+.pixel-btn:hover {
+  background: rgba(255,255,255,0.04);
+}
+
+.pixel-btn:active,
+.pixel-btn.pressed {
+  transform: translate(2px, 2px);
+  box-shadow: none !important;
+}
+
+/* ── Scanline texture ────────────────────────────── */
+.scanlines {
+  position: relative;
+}
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.12) 0px,
+    rgba(0,0,0,0.12) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ── Glow text removed for retro crispness ── */
+.glow-green  { text-shadow: none; font-weight: bold; }
+.glow-cyan   { text-shadow: none; font-weight: bold; }
+.glow-amber  { text-shadow: none; font-weight: bold; }
+.glow-magenta{ text-shadow: none; font-weight: bold; }
+
+/* ── Cursor blink ────────────────────────────────── */
+@keyframes blink {
+  0%,49% { opacity: 1; }
+  50%,100%{ opacity: 0; }
+}
+
+.cursor-blink {
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  background: var(--green);
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+
+/* ── Slide in animation ──────────────────────────── */
+@keyframes slideInLeft {
+  from { transform: translateX(-20px); opacity: 0; }
+  to   { transform: translateX(0);     opacity: 1; }
+}
+
+@keyframes pixelPop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.08); }
+  70%  { transform: scale(0.97); }
+  100% { transform: scale(1); }
+}
+
+@keyframes crtOn {
+  0%   { clip-path: inset(50% 0 50% 0); opacity: 0.3; }
+  60%  { clip-path: inset(5% 0 5% 0);   opacity: 0.8; }
+  100% { clip-path: inset(0 0 0 0);     opacity: 1;   }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 1; }
+  50%     { opacity: 0.4; }
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 1300px) {
+  .right-panel { width: 400px; }
+}
+@media (max-width: 1100px) {
+  .right-panel { width: 360px; }
+}
+@media (max-width: 1024px) {
+  .app-shell { min-width: 1024px; }
+}

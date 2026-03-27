@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="GyanBit Studio - 8-bit game console IDE for Indian students. Code, simulate, and flash games to your GyanBit hardware." />
+    <title>GyanBit Studio — 8-Bit Console IDE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DotGothic16&family=VT323&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Retro Loading Screen -->
+    <div id="retro-loader" style="position:fixed;inset:0;background:#000;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s;">
+      <img src="/images/logo_transparent.png" alt="GyanBit" style="height:48px;image-rendering:pixelated;margin-bottom:20px;animation:blink 1.5s step-end infinite;">
+      <div style="font-family:'Press Start 2P', monospace;font-size:10px;color:#fff;">INITIALIZING IDE...</div>
+    </div>
+
+    <script>
+      window.addEventListener('load', () => {
+        const loader = document.getElementById('retro-loader');
+        if (loader) {
+          loader.style.opacity = '0';
+          setTimeout(() => loader.remove(), 800);
+        }
+      });
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

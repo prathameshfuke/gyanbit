@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GyanBit — Documentation & Tutorials</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DotGothic16&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ 
+      startOnLoad: true, 
+      theme: 'base',
+      themeVariables: {
+        primaryColor: '#f59e0b',
+        primaryTextColor: '#1e293b',
+        primaryBorderColor: '#1e293b',
+        lineColor: '#1e293b',
+        secondaryColor: '#3b82f6',
+        tertiaryColor: '#fff',
+        fontFamily: "'DotGothic16', sans-serif",
+        fontSize: '15px'
+      },
+      flowchart: {
+        nodeSpacing: 60,
+        rankSpacing: 60,
+        padding: 20
+      }
+    });
+  </script>
+  <style>
+    /* Force Mermaid edge labels (the text on the blue arrows) to be white for contrast */
+    .edgeLabel, .edgeTerminals {
+      color: #ffffff !important;
+      background-color: #3b82f6 !important;
+      padding: 0 4px !important;
+      border-radius: 4px;
+    }
+    .edgeLabel .label {
+      color: #ffffff !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- Retro Loading Screen -->
+  <div id="retro-loader" style="position:fixed;inset:0;background:#000;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s;">
+    <img src="/images/logo_transparent.png" alt="GyanBit" style="height:48px;image-rendering:pixelated;margin-bottom:20px;animation:blink 1.5s step-end infinite;">
+    <div style="font-family:'Press Start 2P', monospace;font-size:10px;color:#fff;">LOADING MANUAL...</div>
+  </div>
+
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo_transparent.png" alt="GyanBit Logo" style="height:38px;">
+      </a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/docs.html" style="color:var(--red);">Docs</a>
+        <a href="/games.html">Games</a>
+        <a href="/hardware.html">Hardware</a>
+      </div>
+      <button class="btn btn-primary launch-studio" id="open-studio-btn">Open Studio</button>
+    </div>
+  </nav>
+
+  <section class="section" style="padding-top: 140px;">
+    <div class="container">
+      <div class="section-label">THE MANUAL</div>
+      <h2 class="section-title">How to use <em>GyanBit</em></h2>
+      <p class="section-sub">A complete guide to coding, testing, and flashing your games.</p>
+    </div>
+  </section>
+
+  <!-- Flowchart Section -->
+  <section class="section section-dark">
+    <div class="container">
+      <h3 style="font-family:var(--font-pixel);text-align:center;margin-bottom:2rem;font-size:0.8rem;color:var(--text);">HOW IT ALL WORKS</h3>
+      <div style="background:#fff;border:4px solid var(--text);padding:2rem;box-shadow:8px 8px 0 rgba(0,0,0,0.1);overflow-x:auto;">
+        <div class="mermaid" style="text-align:center;">
+          graph TD
+            A[Open Studio IDE] -->|Write Code| B(JavaScript using bit.* API)
+            B --> C{Test Game}
+            C -->|Click RUN| D[OLED Simulator in Browser]
+            D -->|Find a Bug?| B
+            C -->|Game is Perfect!| E(Connect hardware via USB)
+            E --> F[Click FLASH]
+            F -->|Auto-translates to MicroPython| G[Game runs on real Controller!]
+            G --> H((PLAY!))
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tutorials Section -->
+  <section class="section">
+    <div class="container">
+      
+      <div style="background:var(--navy);border:4px solid var(--border);padding:2rem;margin-bottom:4rem;border-radius:8px;">
+        <h2 style="font-family:var(--font-pixel);color:var(--amber);margin-bottom:1rem;font-size:1.2rem;line-height:1.4;">Make Your First 2D Game with GyanBit</h2>
+        <p style="font-size:1.1rem;color:var(--text-mid);line-height:1.6;margin-bottom:2rem;">
+          Get started making your very first game with the GyanBit game engine, using JavaScript! GyanBit is a great tool for both beginners and advanced programmers, and if you make a game, you can play it on your own DIY handheld console! Follow this four-part series in order, and you'll get to make your very own puzzle game.
+        </p>
+        
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:1.5rem;">
+          <div style="background:#0a0a1a;border:2px solid var(--green);padding:1.5rem;border-radius:6px;">
+            <h4 style="font-family:var(--font-mono);color:var(--green);margin-bottom:10px;">Part 1</h4>
+            <p style="font-size:0.95rem;color:#e2e8f0;line-height:1.5;">Getting familiar with the GyanBit Engine + Make your first puzzle!</p>
+          </div>
+          <div style="background:#0a0a1a;border:2px solid var(--cyan);padding:1.5rem;border-radius:6px;">
+            <h4 style="font-family:var(--font-mono);color:var(--cyan);margin-bottom:10px;">Part 2</h4>
+            <p style="font-size:0.95rem;color:#e2e8f0;line-height:1.5;">Maze Game (Part 1/3): Characters, Enemies and Maps.</p>
+          </div>
+          <div style="background:#0a0a1a;border:2px solid var(--amber);padding:1.5rem;border-radius:6px;">
+            <h4 style="font-family:var(--font-mono);color:var(--amber);margin-bottom:10px;">Part 3</h4>
+            <p style="font-size:0.95rem;color:#e2e8f0;line-height:1.5;">Maze Game (Part 2/3): Adding Gameplay Mechanics</p>
+          </div>
+          <div style="background:#0a0a1a;border:2px solid var(--magenta);padding:1.5rem;border-radius:6px;">
+            <h4 style="font-family:var(--font-mono);color:var(--magenta);margin-bottom:10px;">Part 4</h4>
+            <p style="font-size:0.95rem;color:#e2e8f0;line-height:1.5;">Maze Game (Part 3/3): Polish & Flash to Hardware</p>
+          </div>
+        </div>
+      </div>
+      <h3 style="font-family:var(--font-pixel);margin-bottom:1.5rem;font-size:0.8rem;color:var(--text);border-bottom:4px solid var(--text);padding-bottom:10px;">BASIC TUTORIAL: DRAWING A BOX</h3>
+      <p style="font-size:1.1rem;margin-bottom:1rem;color:var(--text-mid);">GyanBit games run inside a loop. The screen is 128 pixels wide and 64 pixels tall. The top-left corner is X: 0, Y: 0.</p>
+      
+      <div class="hero-code-preview" style="max-width:100%;margin-bottom:2rem;">
+        <div class="code-header">
+          <span class="dot red" style="background:var(--red);"></span>
+          <span class="dot yellow" style="background:var(--amber);"></span>
+          <span class="dot green" style="background:var(--green);"></span>
+          <span class="code-file">my_first_game.js</span>
+        </div>
+        <pre class="code-block" style="padding:15px;background:#f8fafc;font-family:var(--font-mono);font-size:1.2rem;overflow-x:auto;">
+<span class="c-comment">// 1. Tell GyanBit to loop this code 30 times a second</span>
+<span class="c-kw">bit</span>.<span class="c-fn">loop</span>(<span class="c-kw">() =></span> {
+  <span class="c-comment">// 2. Clear the screen every frame so it doesn't smear</span>
+  <span class="c-kw">bit</span>.<span class="c-fn">clear</span>();
+
+  <span class="c-comment">// 3. Draw a filled box at X=60, Y=30, Width=8, Height=8</span>
+  <span class="c-kw">bit</span>.<span class="c-fn">fill</span>(60, 30, 8, 8);
+
+  <span class="c-comment">// 4. Draw some text at the top left</span>
+  <span class="c-kw">bit</span>.<span class="c-fn">text</span>(2, 2, <span class="c-str">"HELLO WORLD!"</span>);
+});</pre>
+      </div>
+
+      <h3 style="font-family:var(--font-pixel);margin-bottom:1.5rem;font-size:0.8rem;color:var(--text);border-bottom:4px solid var(--text);padding-bottom:10px;margin-top:3rem;">BASIC TUTORIAL: MOVING THE BOX</h3>
+      <p style="font-size:1.1rem;margin-bottom:1rem;color:var(--text-mid);">Let's use the D-Pad buttons (UP, DOWN, LEFT, RIGHT) to move our box!</p>
+
+      <div class="hero-code-preview" style="max-width:100%;margin-bottom:2rem;">
+        <div class="code-header">
+          <span class="dot red" style="background:var(--red);"></span>
+          <span class="dot yellow" style="background:var(--amber);"></span>
+          <span class="dot green" style="background:var(--green);"></span>
+          <span class="code-file">moving_box.js</span>
+        </div>
+        <pre class="code-block" style="padding:15px;background:#f8fafc;font-family:var(--font-mono);font-size:1.2rem;overflow-x:auto;">
+<span class="c-comment">// Create variables outside the loop to remember the position</span>
+<span class="c-kw">let</span> playerX = 60;
+<span class="c-kw">let</span> playerY = 30;
+
+<span class="c-kw">bit</span>.<span class="c-fn">loop</span>(<span class="c-kw">() =></span> {
+  <span class="c-kw">bit</span>.<span class="c-fn">clear</span>();
+
+  <span class="c-comment">// Check if a button is currently pressed down</span>
+  <span class="c-kw">if</span> (<span class="c-kw">bit</span>.<span class="c-fn">isHeld</span>(<span class="c-str">'right'</span>)) { playerX += 2; }
+  <span class="c-kw">if</span> (<span class="c-kw">bit</span>.<span class="c-fn">isHeld</span>(<span class="c-str">'left'</span>))  { playerX -= 2; }
+  <span class="c-kw">if</span> (<span class="c-kw">bit</span>.<span class="c-fn">isHeld</span>(<span class="c-str">'up'</span>))    { playerY -= 2; }
+  <span class="c-kw">if</span> (<span class="c-kw">bit</span>.<span class="c-fn">isHeld</span>(<span class="c-str">'down'</span>))  { playerY += 2; }
+
+  <span class="c-comment">// Draw the player using the updated coordinates</span>
+  <span class="c-kw">bit</span>.<span class="c-fn">fill</span>(playerX, playerY, 8, 8);
+});</pre>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── SYSTEM DIAGRAMS ────────────────────────── -->
+  <section class="section" id="diagrams">
+    <div class="container">
+      <div class="section-label">SYSTEM DIAGRAMS</div>
+      <h2 class="section-title">Architecture & Flowcharts</h2>
+      <p class="section-sub">Visual breakdowns of how GyanBit works — from code to console.</p>
+
+      <!-- 1. Game Dev Workflow -->
+      <div style="background:#fff;border:4px solid var(--text);padding:2rem;box-shadow:8px 8px 0 rgba(0,0,0,0.1);overflow-x:auto;margin-bottom:2.5rem;">
+        <h4 style="font-family:var(--font-pixel);font-size:0.65rem;color:var(--amber);margin-bottom:1rem;">🎮 GAME DEVELOPMENT WORKFLOW</h4>
+        <div class="mermaid" style="text-align:center;">
+          flowchart TD
+            A["Open GyanBit Studio"] --> B["Write JavaScript using bit.* API"]
+            B --> C{"Click RUN"}
+            C --> D["Game runs in OLED Simulator"]
+            D --> E{"Bug found?"}
+            E -->|"Yes"| B
+            E -->|"No"| F["Connect hardware via USB-C"]
+            F --> G["Click FLASH"]
+            G --> H["JS auto-translates to MicroPython"]
+            H --> I["Game runs on real console!"]
+            I --> J(("PLAY!"))
+        </div>
+      </div>
+
+      <!-- 2. System Architecture -->
+      <div style="background:#fff;border:4px solid var(--text);padding:2rem;box-shadow:8px 8px 0 rgba(0,0,0,0.1);overflow-x:auto;margin-bottom:2.5rem;">
+        <h4 style="font-family:var(--font-pixel);font-size:0.65rem;color:var(--cyan);margin-bottom:1rem;">🌐 SYSTEM ARCHITECTURE</h4>
+        <div class="mermaid" style="text-align:center;">
+          graph LR
+            subgraph Browser["Browser"]
+              A["Code Editor"] --> E["GyanBitRuntime.js"]
+              D["Virtual Gamepad"] --> E
+              E --> C["OLED Simulator"]
+            end
+            subgraph Console["Physical Console"]
+              F["RP2040 MCU"] --> G["SH1106 OLED"]
+              H["D-Pad + Buttons"] --> F
+            end
+            A -->|"FLASH via USB-C"| I["MicroPythonGen.js"]
+            I -->|"MicroPython"| F
+        </div>
+      </div>
+
+      <!-- 3. Hardware Block Diagram -->
+      <div style="background:#fff;border:4px solid var(--text);padding:2rem;box-shadow:8px 8px 0 rgba(0,0,0,0.1);overflow-x:auto;margin-bottom:2.5rem;">
+        <h4 style="font-family:var(--font-pixel);font-size:0.65rem;color:var(--red);margin-bottom:1rem;">🔌 HARDWARE BLOCK DIAGRAM</h4>
+        <div class="mermaid" style="text-align:center;">
+          graph TB
+            USB["USB-C Port"] --> REG["3.3V Regulator"]
+            BAT["LiPo Battery"] --> REG
+            REG --> RP["RP2040 MCU"]
+            RP -->|"I2C/SPI"| OLED["SH1106 OLED 128x64"]
+            DPAD["4-Way D-Pad"] --> RP
+            BTNA["Button A"] --> RP
+            BTNB["Button B"] --> RP
+            BTNS["START Button"] --> RP
+            RP --> BUZ["Piezo Buzzer"]
+            USB -->|"Data"| RP
+        </div>
+      </div>
+
+      <!-- 4. IDE Software Architecture -->
+      <div style="background:#fff;border:4px solid var(--text);padding:2rem;box-shadow:8px 8px 0 rgba(0,0,0,0.1);overflow-x:auto;margin-bottom:2.5rem;">
+        <h4 style="font-family:var(--font-pixel);font-size:0.65rem;color:var(--green);margin-bottom:1rem;">💻 IDE SOFTWARE ARCHITECTURE</h4>
+        <div class="mermaid" style="text-align:center;">
+          graph TD
+            APP["App.jsx"] --> TB["Toolbar"]
+            APP --> CE["Code Editor"]
+            APP --> OS["OLED Screen"]
+            APP --> GP["GamePad"]
+            APP --> GG["Game Gallery"]
+            APP --> CP["Console Panel"]
+            CE -->|"Source Code"| RT["GyanBitRuntime.js"]
+            GP -->|"Button Events"| RT
+            RT -->|"Pixel Buffer"| OS
+            RT --> PF["PixelFont.js"]
+            RT --> MP["MicroPythonGen.js"]
+            GG -->|"Load Game"| CE
+        </div>
+      </div>
+
+      <!-- 5. Website Page Structure -->
+      <div style="background:#fff;border:4px solid var(--text);padding:2rem;box-shadow:8px 8px 0 rgba(0,0,0,0.1);overflow-x:auto;margin-bottom:2.5rem;">
+        <h4 style="font-family:var(--font-pixel);font-size:0.65rem;color:var(--amber);margin-bottom:1rem;">🗺️ WEBSITE PAGE STRUCTURE</h4>
+        <div class="mermaid" style="text-align:center;">
+          graph TD
+            HOME["index.html — Landing Page"] --> ABOUT["about.html — What is GyanBit"]
+            HOME --> DOCS["docs.html — Tutorials + Manual"]
+            HOME --> GAMES["games.html — Game Library"]
+            HOME --> HW["hardware.html — Hardware Specs"]
+            HOME -->|"Launch Studio"| STUDIO["studio.html — IDE"]
+            DOCS --> T1["Part 1: Engine Basics"]
+            DOCS --> T2["Part 2: Maze Characters"]
+            DOCS --> T3["Part 3: Gameplay Mechanics"]
+            DOCS --> T4["Part 4: Polish and Flash"]
+            STUDIO --> EDITOR["Code Editor"]
+            STUDIO --> SIM["OLED Simulator"]
+            STUDIO --> PAD["Virtual Gamepad"]
+            STUDIO --> GALLERY["Game Gallery"]
+        </div>
+      </div>
+
+      <!-- 6. Price Distribution -->
+      <div style="background:#fff;border:4px solid var(--text);padding:2rem;box-shadow:8px 8px 0 rgba(0,0,0,0.1);overflow-x:auto;margin-bottom:2.5rem;">
+        <h4 style="font-family:var(--font-pixel);font-size:0.65rem;color:var(--red);margin-bottom:1rem;">💰 UNIT COST BREAKDOWN (₹520 BOM)</h4>
+        <div class="mermaid" style="text-align:center;">
+          pie title GyanBit Unit Cost Breakdown
+            "RP2040 MCU ₹85" : 85
+            "SH1106 OLED ₹120" : 120
+            "PCB + Assembly ₹70" : 70
+            "Eco-Bamboo Case ₹90" : 90
+            "Battery + Power IC ₹115" : 115
+            "Kraft Packaging ₹40" : 40
+        </div>
+      </div>
+
+      <!-- 7. Flash-to-Hardware Sequence -->
+      <div style="background:#fff;border:4px solid var(--text);padding:2rem;box-shadow:8px 8px 0 rgba(0,0,0,0.1);overflow-x:auto;margin-bottom:2.5rem;">
+        <h4 style="font-family:var(--font-pixel);font-size:0.65rem;color:var(--cyan);margin-bottom:1rem;">⚡ FLASH-TO-HARDWARE SEQUENCE</h4>
+        <div class="mermaid" style="text-align:center;">
+          sequenceDiagram
+            participant S as Student
+            participant IDE as GyanBit Studio
+            participant GEN as MicroPythonGen
+            participant RP as RP2040 Board
+            S->>IDE: Clicks FLASH
+            IDE->>IDE: Validates JS code
+            IDE->>GEN: Sends JS source
+            GEN->>GEN: Translates to MicroPython
+            GEN->>IDE: Returns .py file
+            IDE->>RP: Sends via USB-C WebSerial
+            RP->>RP: Stores in flash memory
+            RP-->>IDE: ACK - Flash complete
+            IDE-->>S: Flashed successfully!
+        </div>
+      </div>
+
+      <!-- 8. User Journey -->
+      <div style="background:#fff;border:4px solid var(--text);padding:2rem;box-shadow:8px 8px 0 rgba(0,0,0,0.1);overflow-x:auto;">
+        <h4 style="font-family:var(--font-pixel);font-size:0.65rem;color:var(--green);margin-bottom:1rem;">🧭 STUDENT USER JOURNEY</h4>
+        <div class="mermaid" style="text-align:center;">
+          journey
+            title First Day with GyanBit
+            section Discovery
+              Visit GyanBit website: 5: Student
+              Read About page: 3: Student
+              Watch flowchart on Docs: 4: Student
+            section First Game
+              Open Studio IDE: 5: Student
+              Load Snake from Gallery: 5: Student
+              Click RUN and play: 5: Student
+              Modify snake speed: 4: Student
+            section Going Deeper
+              Follow 4-Part Tutorial: 4: Student
+              Build custom maze game: 5: Student
+              Flash to hardware: 5: Student
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── USER MANUAL ───────────────────────────── -->
+  <section class="section section-dark" id="manual">
+    <div class="container">
+      <div class="section-label">USER MANUAL</div>
+      <h2 class="section-title">Operation & Educational Purpose</h2>
+      <p class="section-sub">Everything you need to know about learning, building, and playing with GyanBit.</p>
+    </div>
+  </section>
+
+  <!-- In the Box -->
+  <section class="section">
+    <div class="container">
+      <h3 style="font-family:var(--font-pixel);font-size:0.8rem;color:var(--text);border-bottom:4px solid var(--text);padding-bottom:10px;margin-bottom:1.5rem;">📦 IN THE BOX</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-bottom:2rem;">
+        <div style="background:var(--bg2);border:3px solid var(--border);padding:1rem;border-radius:6px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:6px;">🔌</div>
+          <strong style="font-family:var(--font-pixel);font-size:0.55rem;color:var(--cyan);">RP2040 Mainboard</strong>
+          <p style="font-size:0.9rem;color:var(--text-mid);margin-top:4px;">The brain of GyanBit — a powerful dual-core ARM Cortex-M0+ microcontroller.</p>
+        </div>
+        <div style="background:var(--bg2);border:3px solid var(--border);padding:1rem;border-radius:6px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:6px;">🖥️</div>
+          <strong style="font-family:var(--font-pixel);font-size:0.55rem;color:var(--cyan);">1.3" OLED Display</strong>
+          <p style="font-size:0.9rem;color:var(--text-mid);margin-top:4px;">SH1106 monochrome 128×64 display — crisp whites on deep blacks.</p>
+        </div>
+        <div style="background:var(--bg2);border:3px solid var(--border);padding:1rem;border-radius:6px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:6px;">🎮</div>
+          <strong style="font-family:var(--font-pixel);font-size:0.55rem;color:var(--cyan);">D-Pad & Buttons</strong>
+          <p style="font-size:0.9rem;color:var(--text-mid);margin-top:4px;">Tactile membrane buttons: D-Pad, A, B, and START for full game control.</p>
+        </div>
+        <div style="background:var(--bg2);border:3px solid var(--border);padding:1rem;border-radius:6px;text-align:center;">
+          <div style="font-size:2rem;margin-bottom:6px;">♻️</div>
+          <strong style="font-family:var(--font-pixel);font-size:0.55rem;color:var(--amber);">Eco-Bamboo Shell</strong>
+          <p style="font-size:0.9rem;color:var(--text-mid);margin-top:4px;">Sustainable bamboo-fiber enclosure. 100% biodegradable at end of life.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Getting Started -->
+  <section class="section section-dark">
+    <div class="container">
+      <h3 style="font-family:var(--font-pixel);font-size:0.8rem;color:var(--text);border-bottom:4px solid var(--text);padding-bottom:10px;margin-bottom:1.5rem;">🚀 GETTING STARTED</h3>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;">
+        <div style="background:var(--bg);border:3px solid var(--border);padding:1.5rem;border-radius:6px;">
+          <div style="font-family:var(--font-pixel);font-size:0.7rem;color:var(--amber);margin-bottom:8px;">STEP 1 — OPEN THE IDE</div>
+          <p style="color:var(--text-mid);font-size:1rem;">Go to the GyanBit website and click <strong>"Open Studio"</strong>. The browser-based IDE will load instantly — no downloads needed.</p>
+        </div>
+        <div style="background:var(--bg);border:3px solid var(--border);padding:1.5rem;border-radius:6px;">
+          <div style="font-family:var(--font-pixel);font-size:0.7rem;color:var(--amber);margin-bottom:8px;">STEP 2 — WRITE CODE</div>
+          <p style="color:var(--text-mid);font-size:1rem;">Use the <code>bit.*</code> API to write game logic in JavaScript. Try loading a sample game from the Gallery to see how it works!</p>
+        </div>
+        <div style="background:var(--bg);border:3px solid var(--border);padding:1.5rem;border-radius:6px;">
+          <div style="font-family:var(--font-pixel);font-size:0.7rem;color:var(--amber);margin-bottom:8px;">STEP 3 — TEST IN SIMULATOR</div>
+          <p style="color:var(--text-mid);font-size:1rem;">Click <strong>▶ RUN</strong> to instantly preview your game on the built-in OLED simulator. Use the on-screen D-Pad to play!</p>
+        </div>
+        <div style="background:var(--bg);border:3px solid var(--border);padding:1.5rem;border-radius:6px;">
+          <div style="font-family:var(--font-pixel);font-size:0.7rem;color:var(--amber);margin-bottom:8px;">STEP 4 — FLASH TO HARDWARE</div>
+          <p style="color:var(--text-mid);font-size:1rem;">Connect your GyanBit via USB-C, click <strong>⚡ FLASH</strong>. The code auto-translates to MicroPython and runs on the real console!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- API Quick Reference -->
+  <section class="section">
+    <div class="container">
+      <h3 style="font-family:var(--font-pixel);font-size:0.8rem;color:var(--text);border-bottom:4px solid var(--text);padding-bottom:10px;margin-bottom:1.5rem;">📖 API QUICK REFERENCE</h3>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:1.1rem;">
+          <thead>
+            <tr style="background:var(--text);color:var(--bg);">
+              <th style="padding:10px 12px;text-align:left;font-family:var(--font-pixel);font-size:0.55rem;">Function</th>
+              <th style="padding:10px 12px;text-align:left;font-family:var(--font-pixel);font-size:0.55rem;">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:2px solid var(--border);">
+              <td style="padding:8px 12px;"><code>bit.clear()</code></td>
+              <td style="padding:8px 12px;color:var(--text-mid);">Clears the entire 128×64 screen</td>
+            </tr>
+            <tr style="border-bottom:2px solid var(--border);background:var(--bg2);">
+              <td style="padding:8px 12px;"><code>bit.fill(x,y,w,h)</code></td>
+              <td style="padding:8px 12px;color:var(--text-mid);">Draws a filled rectangle</td>
+            </tr>
+            <tr style="border-bottom:2px solid var(--border);">
+              <td style="padding:8px 12px;"><code>bit.text(x,y,str)</code></td>
+              <td style="padding:8px 12px;color:var(--text-mid);">Renders pixel text at the given position</td>
+            </tr>
+            <tr style="border-bottom:2px solid var(--border);background:var(--bg2);">
+              <td style="padding:8px 12px;"><code>bit.line(x1,y1,x2,y2)</code></td>
+              <td style="padding:8px 12px;color:var(--text-mid);">Draws a line between two points</td>
+            </tr>
+            <tr style="border-bottom:2px solid var(--border);">
+              <td style="padding:8px 12px;"><code>bit.circle(cx,cy,r)</code></td>
+              <td style="padding:8px 12px;color:var(--text-mid);">Draws an outline circle</td>
+            </tr>
+            <tr style="border-bottom:2px solid var(--border);background:var(--bg2);">
+              <td style="padding:8px 12px;"><code>bit.isHeld('btn')</code></td>
+              <td style="padding:8px 12px;color:var(--text-mid);">Returns true if button is held down (up/down/left/right/a/b)</td>
+            </tr>
+            <tr style="border-bottom:2px solid var(--border);">
+              <td style="padding:8px 12px;"><code>bit.isPressed('btn')</code></td>
+              <td style="padding:8px 12px;color:var(--text-mid);">Returns true only on the frame the button was first pressed</td>
+            </tr>
+            <tr style="border-bottom:2px solid var(--border);background:var(--bg2);">
+              <td style="padding:8px 12px;"><code>bit.loop(fn)</code></td>
+              <td style="padding:8px 12px;color:var(--text-mid);">Registers the main game loop (runs at ~30fps)</td>
+            </tr>
+            <tr style="background:var(--bg2);">
+              <td style="padding:8px 12px;"><code>bit.beep(freq,ms)</code></td>
+              <td style="padding:8px 12px;color:var(--text-mid);">Plays a square-wave beep at the given frequency</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Care & Maintenance -->
+  <section class="section section-dark">
+    <div class="container">
+      <h3 style="font-family:var(--font-pixel);font-size:0.8rem;color:var(--text);border-bottom:4px solid var(--text);padding-bottom:10px;margin-bottom:1.5rem;">🔧 CARE & MAINTENANCE</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;">
+        <div style="background:var(--bg);border:3px solid var(--border);padding:1.2rem;border-radius:6px;">
+          <strong style="font-family:var(--font-pixel);font-size:0.55rem;color:var(--red);">🔋 Battery</strong>
+          <p style="color:var(--text-mid);margin-top:6px;">Contains a rechargeable LiPo cell. Charge via USB-C with any standard 5V adapter. Avoid overcharging.</p>
+        </div>
+        <div style="background:var(--bg);border:3px solid var(--border);padding:1.2rem;border-radius:6px;">
+          <strong style="font-family:var(--font-pixel);font-size:0.55rem;color:var(--red);">🧹 Cleaning</strong>
+          <p style="color:var(--text-mid);margin-top:6px;">Wipe the bamboo shell with a dry or slightly damp cloth. Avoid harsh chemicals near the OLED screen.</p>
+        </div>
+        <div style="background:var(--bg);border:3px solid var(--border);padding:1.2rem;border-radius:6px;">
+          <strong style="font-family:var(--font-pixel);font-size:0.55rem;color:var(--red);">♻️ Eco-Disposal</strong>
+          <p style="color:var(--text-mid);margin-top:6px;">The bamboo shell is 100% biodegradable. End-of-life PCBs should be recycled at designated e-waste facilities.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo_transparent.png" alt="GyanBit Logo" style="height:38px;">
+      </a>
+      <span class="footer-note">Built for curious minds. Made in India 🇮🇳</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

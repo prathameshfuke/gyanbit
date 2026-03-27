@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GyanBit — Game Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=DotGothic16&family=VT323&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Retro Loading Screen -->
+  <div id="retro-loader" style="position:fixed;inset:0;background:#000;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.8s;">
+    <img src="/images/logo_transparent.png" alt="GyanBit" style="height:48px;image-rendering:pixelated;margin-bottom:20px;animation:blink 1.5s step-end infinite;">
+    <div style="font-family:'Press Start 2P', monospace;font-size:10px;color:#fff;">LOADING CARTRIDGE...</div>
+  </div>
+
+  <!-- ── NAV ──────────────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo_transparent.png" alt="GyanBit Logo">
+      </a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/games.html" style="color:var(--red);">Game Library</a>
+      </div>
+      <a href="/studio.html" class="btn btn-primary" id="open-studio-btn">Open Studio</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <section class="section" style="padding-top: 140px; text-align:center;">
+    <div class="container">
+      <div class="section-label">THE ARCADE</div>
+      <h2 class="section-title">GyanBit <em>Cartridges</em></h2>
+      <p class="section-sub" style="margin: 0 auto 3rem;">Browse the official 8-bit games collection. Open any game in GyanBit Studio to study its code, modify the logic, or flash it to the console.</p>
+    </div>
+  </section>
+
+  <!-- ── GAME LIBRARY ─────────────────────────────────── -->
+  <section class="section section-dark">
+    <div class="container">
+      <div class="games-layout" style="grid-template-columns: 1fr;">
+        
+        <!-- Game 1 -->
+        <div class="game-entry" style="padding:2rem;background:#fff;border:4px solid var(--text);box-shadow:8px 8px 0 rgba(0,0,0,0.08);align-items:center;">
+          <div class="game-icon" style="font-size:3rem;margin-right:1rem;">🐍</div>
+          <div style="flex:1;">
+            <h3 class="game-name" style="font-size:1rem;margin-bottom:0.5rem;">SNAKE</h3>
+            <p class="game-desc" style="max-width:600px;">The classic Nokia-style survival game. Eat apples, grow longer, don't hit the walls or yourself.</p>
+          </div>
+          <a href="/studio.html" class="btn btn-primary">Open in Studio ⯈</a>
+        </div>
+
+        <!-- Game 2 -->
+        <div class="game-entry" style="padding:2rem;background:#fff;border:4px solid var(--text);box-shadow:8px 8px 0 rgba(0,0,0,0.08);align-items:center;">
+          <div class="game-icon" style="font-size:3rem;margin-right:1rem;">🧱</div>
+          <div style="flex:1;">
+            <h3 class="game-name" style="font-size:1rem;margin-bottom:0.5rem;">BREAKOUT</h3>
+            <p class="game-desc" style="max-width:600px;">Bounce the ball to smash the bricks. Features speed ramping, 3 lives, and dynamic angles.</p>
+          </div>
+          <a href="/studio.html" class="btn btn-primary">Open in Studio ⯈</a>
+        </div>
+
+        <!-- Game 3 -->
+        <div class="game-entry" style="padding:2rem;background:#fff;border:4px solid var(--text);box-shadow:8px 8px 0 rgba(0,0,0,0.08);align-items:center;">
+          <div class="game-icon" style="font-size:3rem;margin-right:1rem;">🕹️</div>
+          <div style="flex:1;">
+            <h3 class="game-name" style="font-size:1rem;margin-bottom:0.5rem;">PONG</h3>
+            <p class="game-desc" style="max-width:600px;">Beat the AI paddle in a game of reflex and prediction. First to 5 points wins.</p>
+          </div>
+          <a href="/studio.html" class="btn btn-primary">Open in Studio ⯈</a>
+        </div>
+
+        <!-- Game 4 -->
+        <div class="game-entry" style="padding:2rem;background:#fff;border:4px solid var(--text);box-shadow:8px 8px 0 rgba(0,0,0,0.08);align-items:center;">
+          <div class="game-icon" style="font-size:3rem;margin-right:1rem;">🏃</div>
+          <div style="flex:1;">
+            <h3 class="game-name" style="font-size:1rem;margin-bottom:0.5rem;">DODGER</h3>
+            <p class="game-desc" style="max-width:600px;">Rocks fall from the sky. Evade them to survive as long as possible. High score saved dynamically.</p>
+          </div>
+          <a href="/studio.html" class="btn btn-primary">Open in Studio ⯈</a>
+        </div>
+
+        <!-- Game 5 -->
+        <div class="game-entry" style="padding:2rem;background:#fff;border:4px solid var(--text);box-shadow:8px 8px 0 rgba(0,0,0,0.08);align-items:center;">
+          <div class="game-icon" style="font-size:3rem;margin-right:1rem;">🌀</div>
+          <div style="flex:1;">
+            <h3 class="game-name" style="font-size:1rem;margin-bottom:0.5rem;">MAZE</h3>
+            <p class="game-desc" style="max-width:600px;">Navigate a procedurally generated labyrinth. Find the goal block to generate a new level.</p>
+          </div>
+          <a href="/studio.html" class="btn btn-primary">Open in Studio ⯈</a>
+        </div>
+
+        <!-- Game 6 -->
+        <div class="game-entry" style="padding:2rem;background:#fff;border:4px solid var(--text);box-shadow:8px 8px 0 rgba(0,0,0,0.08);align-items:center;">
+          <div class="game-icon" style="font-size:3rem;margin-right:1rem;">🛸</div>
+          <div style="flex:1;">
+            <h3 class="game-name" style="font-size:1rem;margin-bottom:0.5rem;">SPACE INVADERS</h3>
+            <p class="game-desc" style="max-width:600px;">Defend earth from the descending alien fleet! Shoot projectiles and clear the screen before they reach you.</p>
+          </div>
+          <a href="/studio.html" class="btn btn-primary">Open in Studio ⯈</a>
+        </div>
+
+        <!-- Game 7 -->
+        <div class="game-entry" style="padding:2rem;background:#fff;border:4px solid var(--text);box-shadow:8px 8px 0 rgba(0,0,0,0.08);align-items:center;">
+          <div class="game-icon" style="font-size:3rem;margin-right:1rem;">🐦</div>
+          <div style="flex:1;">
+            <h3 class="game-name" style="font-size:1rem;margin-bottom:0.5rem;">FLAPPY BIRD</h3>
+            <p class="game-desc" style="max-width:600px;">Classic gravity-based obstacle survival. Press A to flap wings and navigate between pipes.</p>
+          </div>
+          <a href="/studio.html" class="btn btn-primary">Open in Studio ⯈</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo_transparent.png" alt="GyanBit Logo">
+      </a>
+      <span class="footer-note">Built for curious minds. Made in India 🇮🇳</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
