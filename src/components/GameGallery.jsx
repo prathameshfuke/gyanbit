@@ -92,7 +92,7 @@ const GAMES = [
   { id: 'space',    name: 'SPACE',    tagline: 'DEFEND EARTH',       accent: '#ff2244', file: 'space'    },
 ];
 
-export default function GameGallery({ onLoad }) {
+export default function GameGallery({ onLoad, onNew }) {
   return (
     <div className="gallery-wrap">
       <div class="section-header" style={{ color: 'var(--amber)', fontSize: '9px', padding: '10px 12px' }}>
@@ -101,6 +101,29 @@ export default function GameGallery({ onLoad }) {
       </div>
 
       <div className="cards-row">
+        {/* New Project Card */}
+        <div 
+          className="game-card btn-new-card" 
+          onClick={onNew}
+          style={{ 
+            '--accent': 'var(--cyan)', 
+            '--shadow': 'rgba(0, 255, 255, 0.3)',
+            '--bg': 'rgba(0, 255, 255, 0.05)'
+          }}
+        >
+          <div className="card-icon-wrap" style={{ background: 'var(--cyan)', color: '#000' }}>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </div>
+          <div className="card-info">
+            <div className="card-name" style={{ color: 'var(--cyan)' }}>NEW PROJECT</div>
+            <div className="card-tag">EMPTY CANVAS</div>
+          </div>
+          <button className="card-load-btn pixel-btn" style={{ color: 'var(--cyan)', borderColor: 'var(--cyan)' }}>START</button>
+        </div>
+
         {GAMES.map(g => (
           <div
             key={g.id}

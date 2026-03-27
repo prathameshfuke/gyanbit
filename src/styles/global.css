@@ -232,3 +232,105 @@ body {
 @media (max-width: 1024px) {
   .app-shell { min-width: 1024px; }
 }
+
+/* ── BYTE Bot Dark Theme (Studio Override) ─────── */
+/* These override the light-theme chatbot styles from style.css */
+.chatbot-panel {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3) !important;
+}
+
+.chatbot-header {
+  background: #0f172a !important;
+  border-bottom: 1px solid #334155 !important;
+  border-radius: 13px 13px 0 0 !important;
+}
+
+.chatbot-messages {
+  background: #1e293b !important;
+}
+
+.chatbot-msg--bot .chatbot-msg-body {
+  background: #0f172a !important;
+  border-color: #334155 !important;
+  color: #cbd5e1 !important;
+}
+
+.chatbot-msg--user .chatbot-msg-body {
+  background: #3b82f6 !important;
+  border-color: #1d4ed8 !important;
+}
+
+.chatbot-msg-label {
+  color: #94a3b8 !important;
+}
+
+.chatbot-msg-body code {
+  color: #34d399 !important;
+  background: rgba(255,255,255,0.06) !important;
+}
+
+.chatbot-msg--user .chatbot-msg-body code {
+  color: #fff !important;
+  background: rgba(255,255,255,0.15) !important;
+}
+
+.chatbot-input-row {
+  background: #0f172a !important;
+  border-top-color: #334155 !important;
+  border-radius: 0 0 16px 16px !important;
+}
+
+.chatbot-input {
+  background: #1e293b !important;
+  border-color: #334155 !important;
+  color: #cbd5e1 !important;
+  border-radius: 12px !important;
+}
+
+.chatbot-input::placeholder {
+  color: #94a3b8 !important;
+}
+
+.chatbot-input:focus {
+  border-color: #3b82f6 !important;
+}
+
+/* Settings dark overrides */
+.chatbot-settings {
+  background: #1e293b !important;
+  border-bottom-color: #334155 !important;
+}
+
+.chatbot-settings-label {
+  color: #cbd5e1 !important;
+}
+
+.chatbot-settings-hint {
+  color: #94a3b8 !important;
+}
+
+.chatbot-settings-hint a {
+  color: #3b82f6 !important;
+}
+
+.chatbot-clear-btn {
+  border-color: #334155 !important;
+  color: #94a3b8 !important;
+}
+
+.chatbot-clear-btn:hover {
+  border-color: #ef4444 !important;
+  color: #ef4444 !important;
+}
+
+.chatbot-toast {
+  background: #334155 !important;
+}
+
+.chatbot-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E") !important;
+}
+

@@ -1,149 +1,111 @@
+# 🎮 GyanBit: Code. Play. Build.
+
 <p align="center">
-  <img src="public/images/logo_transparent.png" alt="GyanBit Logo" width="400" />
+  <img src="public/images/logo_transparent.png" alt="GyanBit Logo" width="450" />
 </p>
 
 <p align="center">
-  <strong>Code games in your browser. Flash them to real hardware. Learn by playing.</strong>
+  <a href="https://vercel.com/"><img src="https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel" alt="Deployed on Vercel"></a>
+  <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Powered%20by-Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white" alt="Powered by Node.js"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License: MIT"></a>
+</p>
+
+<p align="center">
+  <strong>The First 8-bit Handheld Console Ecosystem for Indian Students.</strong>
 </p>
 
 ---
 
-## What is GyanBit?
+## 🚀 What is GyanBit?
 
-GyanBit is an open-source, DIY handheld game console designed for Indian students aged 12–17. It combines a browser-based IDE (GyanBit Studio) with custom RP2040-powered hardware, allowing students to write games in JavaScript and instantly play them on a physical 128×64 OLED screen.
+GyanBit is an open-source, DIY handheld game console designed for students aged 12–17. It empowers kids to move from **consumers** of technology to **creators** by combining a high-performance browser IDE (GyanBit Studio) with custom RP2040 hardware.
 
-**No drivers. No toolchains. No setup.** Just open the browser and start making games.
+Write your code in **JavaScript** in the browser, test it in our pixel-perfect simulator, and flash it to real hardware with **one click** via WebSerial.
+
+---
+
+## 🤖 Meet BYTE Bot: Your AI Coding Buddy
+
+Integrated directly into GyanBit Studio, **BYTE Bot** is a persistent, AI-powered assistant designed specifically for retro game development.
+
+- **Moveable & Floating**: Draggable window that stays out of your code's way.
+- **Smart Knowledge**: Trained on the full `bit.*` API, hardware pin maps, and game logic.
+- **Multi-Provider**: Choose between **Groq** (Free & Ultra-Fast) or **Google Gemini**.
+- **Privacy First**: All API keys are stored locally in your browser's `localStorage`.
 
 ---
 
 ## ✨ Features
 
-| Feature | Description |
-|---|---|
-| 🖥️ **Browser IDE** | Full code editor with syntax highlighting, OLED simulator, and on-screen gamepad |
-| 🎮 **7 Built-in Games** | Snake, Pong, Breakout, Dodger, Maze, Flappy Bird, Space Invaders |
-| 📖 **4-Part Tutorial** | Step-by-step guide to building your first maze game from scratch |
-| ⚡ **One-Click Flash** | Auto-translates JavaScript → MicroPython and flashes via USB-C |
-| 📱 **Retro 16-bit Design** | Press Start 2P typography, pixel art, chunky borders |
-| ♻️ **Eco-Friendly** | Bamboo-fiber enclosure, recycled kraft paper packaging |
+| Category | Highlights |
+|:---|:---|
+| 🖥️ **Studio IDE** | React-powered editor, real-time OLED simulator, and dark-theme pixel interface. |
+| 🛠️ **Project Flow** | Start fresh with **New Project**, or pick from 7 built-in game templates. |
+| ⚡ **One-Click Flash** | Seamless JS → MicroPython translation and USB-C hardware flashing. |
+| 🎮 **Built-in Games** | Snake, Pong, Breakout, Dodger, Maze, Flappy Bird, and Space Invaders. |
+| 📖 **Tutorials** | Structured 4-part guide to building games from scratch. |
+| 🧩 **Hardware** | RP2040 MCU, 1.3" OLED, D-Pad, and Bambo-fiber sustainable shell. |
+
+---
+
+## 📁 Technical Architecture
+
+GyanBit uses a modern, high-performance web stack to deliver a "zero-setup" experience:
+
+```
+gyanbit/
+├── studio.html          # IDE Entry (React App)
+├── chatbot.js           # Self-contained AI Assistant logic
+├── src/
+│   ├── runtime/         # JavaScript Engine & bit.* API implementation
+│   │   ├── MicroPythonGen.js  # JS to MicroPython transpiler 🪄
+│   │   └── PixelFont.js       # Fast 5x7 bitmap renderer
+│   ├── App.jsx          # IDE UI State Management
+│   └── components/      # UI components (Editor, OLED, GamePad, etc.)
+└── api/                 # Vercel serverless functions for AI proxying
+```
 
 ---
 
 ## 🚀 Getting Started
 
-### Prerequisites
-- **Node.js** 18+ and **npm**
-- A modern browser (Chrome, Edge, Firefox)
-
-### Run Locally
-
+### 1. Run Locally
 ```bash
+# Clone the repo
 git clone https://github.com/prathameshfuke/gyanbit.git
 cd gyanbit
+
+# Install and build
 npm install
 npm run dev
 ```
+Navigate to `http://localhost:5173` to explore the ecosystem.
 
-Open `http://localhost:5173` in your browser.
-
-### 🔺 Deploy to Vercel
-
-1. Go to [vercel.com](https://vercel.com/) → **Add New → Project**
-2. Import `prathameshfuke/gyanbit`
-3. Settings auto-detect:
-   - **Framework**: Vite
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-4. Click **Deploy** — done!
-
-> No need to change the Root Directory. Everything builds from the repo root.
+### 2. Deployment
+GyanBit is optimized for **Vercel**. Simply import the repo, and Vite will be auto-detected for building.
+- **Build Command**: `npm run build`
+- **Output Dir**: `dist`
 
 ---
 
-## 📁 Project Structure
+## 📖 `bit.*` API Reference
 
-```
-gyanbit/
-├── index.html          # Landing page
-├── about.html          # About GyanBit
-├── docs.html           # Documentation, Tutorials, Flowcharts & User Manual
-├── games.html          # Game library showcase
-├── hardware.html       # Hardware specs
-├── studio.html         # The IDE (React app entry)
-├── style.css           # Global retro stylesheet
-├── script.js           # Landing page animations
-├── vite.config.js      # Multi-page Vite config
-├── public/images/      # Logo & hero images
-└── src/
-    ├── App.jsx              # IDE root component
-    ├── main.jsx             # React entry point
-    ├── components/
-    │   ├── Toolbar.jsx      # IDE toolbar (Run/Stop/Reset/Flash/Home)
-    │   ├── CodeEditor.jsx   # Syntax-highlighted editor
-    │   ├── OLEDScreen.jsx   # 128×64 OLED simulator canvas
-    │   ├── GamePad.jsx      # On-screen D-Pad + A/B/Start
-    │   ├── GameGallery.jsx  # Colorful game card carousel
-    │   ├── ConsolePanel.jsx # Debug log output
-    │   ├── ApiDocs.jsx      # Inline API reference
-    │   └── PinMap.jsx       # Hardware pin diagram
-    ├── runtime/
-    │   ├── GyanBitRuntime.js    # Core bit.* API engine
-    │   ├── PixelFont.js         # 5×7 bitmap font renderer
-    │   └── MicroPythonGen.js    # JS → MicroPython transpiler
-    └── games/
-        ├── snake.js    ├── pong.js
-        ├── breakout.js ├── dodger.js
-        ├── maze.js     ├── flappy.js
-        └── space.js
-```
+The GyanBit runtime provides a high-level API for rapid game development:
 
----
-
-## 🎨 Design System
-
-| Token | Color | Usage |
-|---|---|---|
-| `--green` | `#34d399` | Success, action buttons |
-| `--cyan` | `#3b82f6` | Links, Sega-blue accents |
-| `--amber` | `#f59e0b` | Warnings, highlights |
-| `--red` | `#ef4444` | Errors, destructive |
-| `--bg` | `#faf8ef` | Retro beige background |
-| `--text` | `#1e293b` | Dark slate text |
-
-**Fonts**: `Press Start 2P` · `DotGothic16` · `VT323`
-
----
-
-## 🔌 Hardware
-
-| Component | Spec |
-|---|---|
-| MCU | RP2040 (Dual-core ARM Cortex-M0+, 133MHz) |
-| Display | 1.3" SH1106 Monochrome OLED, 128×64px |
-| Input | D-Pad + A, B, START |
-| Power | LiPo via USB-C |
-| Shell | Bamboo-fiber (biodegradable) |
-
----
-
-## 📖 `bit.*` API
-
-| Function | Description |
-|---|---|
-| `bit.clear()` | Clear screen |
-| `bit.fill(x,y,w,h)` | Filled rectangle |
-| `bit.text(x,y,str)` | Pixel text |
-| `bit.line(x1,y1,x2,y2)` | Draw line |
-| `bit.circle(cx,cy,r)` | Circle outline |
-| `bit.isHeld('btn')` | Button held check |
-| `bit.isPressed('btn')` | Single-frame press check |
-| `bit.loop(fn)` | Game loop (~30fps) |
-| `bit.beep(freq,ms)` | Square-wave beep |
+| Command | Usage |
+|:---|:---|
+| `bit.loop(fn)` | The core game loop (runs at ~30 FPS). |
+| `bit.clear()` | Wipes the 128x64 display buffer. |
+| `bit.text(x, y, str)` | Renders retro-styled text. |
+| `bit.fill(x, y, w, h)` | Draws a filled rectangle. |
+| `bit.isHeld('up')` | Checks if a button is currently pressed. |
+| `bit.beep(hz, ms)` | Triggers a hardware-level square wave beep. |
 
 ---
 
 ## 🇮🇳 Made in India
 
-Built for curious minds by the GyanBit team.
+Developed with ❤️ by the **Team TC26-GF-005 · MMCOE Pune**.
+GyanBit was built to solve the lack of accessible, hands-on CS hardware for Indian rural students.
 
-**License**: MIT © GyanBit
+**License**: [MIT](https://opensource.org/licenses/MIT) © 2026 GyanBit

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const FULL_NAME = 'GyanBit Studio';
 
-export default function Toolbar({ onRun, onStop, onReset, onConnect, onFlash, onDownload, fps, frameCount, running, connected }) {
+export default function Toolbar({ onRun, onStop, onReset, onConnect, onFlash, onDownload, onNew, fps, frameCount, running, connected }) {
   const [displayed, setDisplayed] = useState('');
   const [doneTyping, setDoneTyping] = useState(false);
   const idxRef = useRef(0);
@@ -34,6 +34,12 @@ export default function Toolbar({ onRun, onStop, onReset, onConnect, onFlash, on
           onClick={() => window.location.href = '/'}
           title="Return to Home"
         >🏠 HOME</button>
+
+        <button
+          className="pixel-btn btn-new"
+          onClick={onNew}
+          title="Start a new blank project"
+        >✚ NEW</button>
         
         <div className="toolbar-divider" />
         <button
@@ -165,6 +171,8 @@ export default function Toolbar({ onRun, onStop, onReset, onConnect, onFlash, on
         .btn-connect.connected { background: var(--green); color: var(--dark); border-color: var(--green); }
         .btn-flash { background: var(--magenta); color: white; border-color: var(--magenta); }
         .btn-download { color: var(--amber); }
+        .btn-new { background: var(--dark); color: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 8px rgba(0, 255, 255, 0.2); }
+        .btn-new:hover { background: var(--cyan); color: var(--dark); box-shadow: 0 0 16px var(--cyan); }
 
         .pixel-btn {
            font-size: 9px !important;

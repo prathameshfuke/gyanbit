@@ -98,10 +98,21 @@ export default function App() {
       w: 'up', s: 'down', a: 'left', d: 'right',
     };
     const onKeyDown = (e) => {
+      // Don't intercept if focus is on the editor or any input
+      const isTyping = e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT';
+      
+      // Don't intercept if Ctrl, Alt, or Meta keys are pressed (for standard shortcuts)
+      const hasModifier = e.ctrlKey || e.metaKey || e.altKey;
+
+      if (e.key === 'F5') { e.preventDefault(); handleRun(); return; }
+      if (e.key === 'F8') { e.preventDefault(); handleStop(); return; }
+
+      // Game pad controls mapping
       const btn = KEY_MAP[e.key];
-      if (btn) { e.preventDefault(); runtimeRef.current?.pressButton(btn); }
-      if (e.key === 'F5') { e.preventDefault(); handleRun(); }
-      if (e.key === 'F8') { e.preventDefault(); handleStop(); }
+      if (btn && !isTyping && !hasModifier) {
+        e.preventDefault();
+        runtimeRef.current?.pressButton(btn);
+      }
     };
     const onKeyUp = (e) => {
       const btn = KEY_MAP[e.key];
@@ -191,6 +202,15 @@ export default function App() {
     appendLog(`Loaded game: ${gameId}`, 'system');
   }, [appendLog]);
 
+  const handleNewGame = useCallback(() => {
+    if (window.confirm('Start a new project? This will clear your current code.')) {
+      setCode(INITIAL_CODE);
+      appendLog('✚ New project started', 'system');
+      runtimeRef.current?.stop();
+      setRunning(false);
+    }
+  }, [appendLog]);
+
   const handleClearConsole = useCallback(() => setLogs([]), []);
 
   return (
@@ -202,6 +222,7 @@ export default function App() {
         onConnect={handleConnect}
         onFlash={handleFlash}
         onDownload={handleDownload}
+        onNew={handleNewGame}
         fps={fps}
         frameCount={frameCount}
         running={running}
@@ -211,7 +232,7 @@ export default function App() {
       <div className="main-area">
         {/* ── LEFT: Gallery + Editor ─────────────────── */}
         <div className="left-panel">
-          <GameGallery onLoad={handleLoadGame} />
+          <GameGallery onLoad={handleLoadGame} onNew={handleNewGame} />
           <div className="editor-outer neon-box scanlines" style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
             <div className="section-header" style={{ color: 'var(--amber)' }}>
               <span className="dot" style={{ background: 'var(--amber)' }} />

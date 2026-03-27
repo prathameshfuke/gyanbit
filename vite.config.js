@@ -16,6 +16,8 @@ export default defineConfig({
         hardware: resolve(__dirname, 'hardware.html'),
         docs: resolve(__dirname, 'docs.html')
       }
-    }
+    },
+    // Copy chatbot.js to dist as a standalone file
+    copyPublicDir: true,
   }
 })
