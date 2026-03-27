@@ -14,6 +14,34 @@
     <div style="font-family:'Press Start 2P', monospace;font-size:10px;color:#fff;">LOADING SCHEMA...</div>
   </div>
 
+  <script>
+    (function() {
+      const loader = document.getElementById('retro-loader');
+      if (!loader) return;
+
+      let isHidden = false;
+      const hideLoader = () => {
+        if (isHidden) return;
+        isHidden = true;
+        loader.style.opacity = '0';
+        setTimeout(() => loader.remove(), 800);
+      };
+
+      const scheduleHide = () => {
+        requestAnimationFrame(() => requestAnimationFrame(hideLoader));
+      };
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', scheduleHide, { once: true });
+      } else {
+        scheduleHide();
+      }
+
+      window.addEventListener('load', scheduleHide, { once: true });
+      setTimeout(scheduleHide, 2200);
+    })();
+  </script>
+
   <nav class="nav" id="nav">
     <div class="nav-inner">
       <a href="/" class="nav-logo">

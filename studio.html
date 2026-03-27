@@ -23,13 +23,28 @@
     <script>
       (function() {
         const loader = document.getElementById('retro-loader');
-        if (loader) {
-          // Force hide after 1.5s no matter what
-          setTimeout(() => {
-            loader.style.opacity = '0';
-            setTimeout(() => loader.remove(), 800);
-          }, 1000);
+        if (!loader) return;
+
+        let isHidden = false;
+        const hideLoader = () => {
+          if (isHidden) return;
+          isHidden = true;
+          loader.style.opacity = '0';
+          setTimeout(() => loader.remove(), 800);
+        };
+
+        const scheduleHide = () => {
+          requestAnimationFrame(() => requestAnimationFrame(hideLoader));
+        };
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', scheduleHide, { once: true });
+        } else {
+          scheduleHide();
         }
+
+        window.addEventListener('load', scheduleHide, { once: true });
+        setTimeout(scheduleHide, 2200);
       })();
     </script>
     <div id="root"></div>

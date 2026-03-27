@@ -1,23 +1,3 @@
-// ── Retro Loader ───────────────────────────────────────
-const loader = document.getElementById('retro-loader');
-if (loader) {
-  let isHidden = false;
-  const hideLoader = () => {
-    if (isHidden) return;
-    isHidden = true;
-    loader.style.opacity = '0';
-    setTimeout(() => loader.remove(), 800);
-  };
-
-  if (document.readyState === 'complete') {
-    hideLoader();
-  } else {
-    window.addEventListener('load', hideLoader);
-    // Bulletproof failsafe: Always hide after 1.5 seconds even if an image/font hangs the load event
-    setTimeout(hideLoader, 1500);
-  }
-}
-
 // ── Scroll Reveal ──────────────────────────────────────
 const revealObserver = new IntersectionObserver(
   (entries) => {

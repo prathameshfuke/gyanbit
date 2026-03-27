@@ -1,0 +1,8 @@
+{
+  "name": "gyanbit-studio-compat",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix .. install && npm --prefix .. run build -- --outDir gyanbit-studio/dist",
+    "dev": "npm --prefix .. run dev"
+  }
+}
