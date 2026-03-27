@@ -36,43 +36,35 @@ GyanBit is an open-source, DIY handheld game console designed for Indian student
 ### Run Locally
 
 ```bash
-# Clone the repo
-git clone https://github.com/your-username/gyanbit-studio.git
-cd gyanbit-studio
-
-# Install dependencies
+git clone https://github.com/prathameshfuke/gyanbit.git
+cd gyanbit
 npm install
-
-# Start the dev server
 npm run dev
 ```
 
-Open `http://localhost:5173` in your browser to see the landing page.
+Open `http://localhost:5173` in your browser.
 
-### 🔺 Deploying to Vercel (Production)
+### 🔺 Deploy to Vercel
 
-Because this repository contains the `gyanbit-studio` sub-folder, follow these exact steps to host your site for free on Vercel:
-
-1. Go to [Vercel](https://vercel.com/) and click **Add New → Project**.
-2. Import your `prathameshfuke/gyanbit` GitHub repository.
-3. **CRITICAL STEP**: Click `Edit` next to **Root Directory** and select `gyanbit-studio`.
-4. The remaining settings will auto-detect correctly:
-   - **Framework Preset**: Vite
+1. Go to [vercel.com](https://vercel.com/) → **Add New → Project**
+2. Import `prathameshfuke/gyanbit`
+3. Settings auto-detect:
+   - **Framework**: Vite
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
-5. Click **Deploy!**
+4. Click **Deploy** — done!
 
-Your entire Landing Page, Docs, and Web IDE will be live worldwide in under a minute!
+> No need to change the Root Directory. Everything builds from the repo root.
 
 ---
 
 ## 📁 Project Structure
 
 ```
-gyanbit-studio/
+gyanbit/
 ├── index.html          # Landing page
 ├── about.html          # About GyanBit
-├── docs.html           # Documentation & User Manual
+├── docs.html           # Documentation, Tutorials, Flowcharts & User Manual
 ├── games.html          # Game library showcase
 ├── hardware.html       # Hardware specs
 ├── studio.html         # The IDE (React app entry)
@@ -97,12 +89,9 @@ gyanbit-studio/
     │   ├── PixelFont.js         # 5×7 bitmap font renderer
     │   └── MicroPythonGen.js    # JS → MicroPython transpiler
     └── games/
-        ├── snake.js
-        ├── pong.js
-        ├── breakout.js
-        ├── dodger.js
-        ├── maze.js
-        ├── flappy.js
+        ├── snake.js    ├── pong.js
+        ├── breakout.js ├── dodger.js
+        ├── maze.js     ├── flappy.js
         └── space.js
 ```
 
@@ -110,69 +99,44 @@ gyanbit-studio/
 
 ## 🎨 Design System
 
-The entire app uses a consistent **16-bit retro** color palette:
-
 | Token | Color | Usage |
 |---|---|---|
-| `--green` | `#34d399` | Success states, action buttons |
-| `--cyan` | `#3b82f6` | Links, headings, Sega-blue accents |
-| `--amber` | `#f59e0b` | Warnings, labels, highlight text |
-| `--red` | `#ef4444` | Errors, destructive actions |
-| `--bg` | `#faf8ef` | Page background (retro beige) |
-| `--text` | `#1e293b` | Primary text (dark slate) |
+| `--green` | `#34d399` | Success, action buttons |
+| `--cyan` | `#3b82f6` | Links, Sega-blue accents |
+| `--amber` | `#f59e0b` | Warnings, highlights |
+| `--red` | `#ef4444` | Errors, destructive |
+| `--bg` | `#faf8ef` | Retro beige background |
+| `--text` | `#1e293b` | Dark slate text |
 
-**Fonts**: `Press Start 2P` (headings), `DotGothic16` (body), `VT323` (monospace/code)
+**Fonts**: `Press Start 2P` · `DotGothic16` · `VT323`
 
 ---
 
-## 🔌 Hardware Specs
+## 🔌 Hardware
 
-| Component | Specification |
+| Component | Spec |
 |---|---|
 | MCU | RP2040 (Dual-core ARM Cortex-M0+, 133MHz) |
 | Display | 1.3" SH1106 Monochrome OLED, 128×64px |
-| Input | 4-way D-Pad + A, B, START buttons |
-| Power | Rechargeable LiPo via USB-C |
-| Shell | Sustainable bamboo-fiber enclosure |
+| Input | D-Pad + A, B, START |
+| Power | LiPo via USB-C |
+| Shell | Bamboo-fiber (biodegradable) |
 
 ---
 
-## 📖 User Manual
-
-### In the Box
-- 1× GyanBit Mainboard (RP2040)
-- 1× 1.3" Monochrome OLED Display (SH1106)
-- 1× Custom D-Pad and Button Membrane Set
-- 1× Reusable USB-C Data Cable
-- 1× Recyclable Bamboo-Fiber Enclosure Shell
-
-### Step-by-Step Usage
-1. **Open the IDE** → Navigate to the website and click "Open Studio"
-2. **Write your game** → Use the `bit.*` API in JavaScript
-3. **Test in simulator** → Click ▶ RUN to see it on the virtual OLED
-4. **Flash to hardware** → Connect via USB-C → click ⚡ FLASH
-
-### `bit.*` API Quick Reference
+## 📖 `bit.*` API
 
 | Function | Description |
 |---|---|
-| `bit.clear()` | Clear the screen |
-| `bit.fill(x,y,w,h)` | Draw a filled rectangle |
-| `bit.text(x,y,str)` | Render pixel text |
-| `bit.line(x1,y1,x2,y2)` | Draw a line |
-| `bit.circle(cx,cy,r)` | Draw a circle outline |
-| `bit.isHeld('btn')` | Check if button is held |
-| `bit.isPressed('btn')` | Check if button was just pressed this frame |
-| `bit.loop(fn)` | Register the main game loop (~30fps) |
-| `bit.beep(freq,ms)` | Play a square-wave beep |
-
----
-
-## 🌱 Eco-Friendly Commitment
-
-- **Bamboo shell**: 100% biodegradable at end of life
-- **Kraft paper packaging**: Recycled materials, no plastic
-- **PCB recycling**: Please dispose at designated e-waste centers
+| `bit.clear()` | Clear screen |
+| `bit.fill(x,y,w,h)` | Filled rectangle |
+| `bit.text(x,y,str)` | Pixel text |
+| `bit.line(x1,y1,x2,y2)` | Draw line |
+| `bit.circle(cx,cy,r)` | Circle outline |
+| `bit.isHeld('btn')` | Button held check |
+| `bit.isPressed('btn')` | Single-frame press check |
+| `bit.loop(fn)` | Game loop (~30fps) |
+| `bit.beep(freq,ms)` | Square-wave beep |
 
 ---
 
@@ -180,8 +144,4 @@ The entire app uses a consistent **16-bit retro** color palette:
 
 Built for curious minds by the GyanBit team.
 
----
-
-## License
-
-MIT © GyanBit
+**License**: MIT © GyanBit
