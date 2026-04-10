@@ -80,14 +80,21 @@ const ICONS = {
     [7,2,'#ff2244'],
     [5,4,'#ffffff'], // bullet
   ],
-  doom: [
-    [4,6,'#aaaaaa'],[5,6,'#aaaaaa'], // gun barrel
-    [4,7,'#aaaaaa'],[5,7,'#aaaaaa'], // gun base
-    [2,3,'#ff2244'],[3,3,'#ff2244'], // monster
-    [2,4,'#ff2244'],[3,4,'#ff2244'], // monster
-    [0,1,'#ffffff'],[0,2,'#ffffff'],[0,3,'#ffffff'],[0,4,'#ffffff'], // left wall
-    [9,1,'#ffffff'],[9,2,'#ffffff'],[9,3,'#ffffff'],[9,4,'#ffffff'], // right wall
-    [4,4,'#ffcc00'],[5,4,'#ffcc00'], // flash
+  f1: [
+    // F1 car body
+    [4,4,'#ffffff'],[5,4,'#ffffff'], // rear wing
+    [3,5,'#ffffff'],[4,5,'#ffffff'],[5,5,'#ffffff'],[6,5,'#ffffff'], // main body
+    [3,6,'#ffffff'],[4,6,'#ffffff'],[5,6,'#ffffff'],[6,6,'#ffffff'],
+    [4,7,'#ffffff'],[5,7,'#ffffff'], // front
+    [2,5,'#ffffff'],[7,5,'#ffffff'], // side pods
+    // wheels
+    [1,4,'#aaaaaa'],[1,5,'#aaaaaa'], // rear left
+    [8,4,'#aaaaaa'],[8,5,'#aaaaaa'], // rear right
+    [3,7,'#aaaaaa'], // front left
+    [6,7,'#aaaaaa'], // front right
+    // motion lines
+    [0,3,'#333333'],[0,6,'#333333'],
+    [9,3,'#333333'],[9,6,'#333333'],
   ],
 };
 
@@ -99,7 +106,8 @@ const GAMES = [
   { id: 'pong',     name: 'PONG',     tagline: 'BEAT THE AI!',       accent: '#ff6600', file: 'pong'     },
   { id: 'flappy',   name: 'FLAPPY',   tagline: 'FLAP TO SURVIVE',    accent: '#ffcc00', file: 'flappy'   },
   { id: 'space',    name: 'SPACE',    tagline: 'DEFEND EARTH',       accent: '#ff2244', file: 'space'    },
-  { id: 'doom',     name: 'DOOM',     tagline: 'RIP AND TEAR',       accent: '#ff0033', file: 'doom'     },
+  { id: 'f1',       name: 'F1 RACE',  tagline: 'PEDAL TO METAL!',    accent: '#ff0000', file: 'f1'       },
+  { id: 'mario',    name: 'MARIO',    tagline: 'CLASSIC BROS.',      accent: '#ffc107', file: 'mario', image: '/src/assets/mario_icon.png' },
 ];
 
 export default function GameGallery({ onLoad, onNew }) {
@@ -145,7 +153,11 @@ export default function GameGallery({ onLoad, onNew }) {
             }}
           >
             <div className="card-icon-wrap" style={{ background: g.accent, color: '#000' }}>
-              <PixelIcon pixels={ICONS[g.id]} size={4} />
+              {g.image ? (
+                <img src={g.image} alt={g.name} style={{ width: '80%', height: '80%', objectFit: 'contain', imageRendering: 'pixelated' }} />
+              ) : (
+                <PixelIcon pixels={ICONS[g.id]} size={4} />
+              )}
             </div>
 
             <div className="card-info">

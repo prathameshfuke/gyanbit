@@ -19,11 +19,13 @@ import mazeCode     from './games/maze.js';
 import pongCode     from './games/pong.js';
 import flappyCode   from './games/flappy.js';
 import spaceCode    from './games/space.js';
-import doomCode     from './games/doom.js';
+import marioCode    from './games/mario.js';
+import f1Code       from './games/f1racing.js';
 
-const GAME_MAP = { 
-  snake: snakeCode, breakout: breakoutCode, dodger: dodgerCode, 
-  maze: mazeCode, pong: pongCode, flappy: flappyCode, space: spaceCode, doom: doomCode 
+const GAME_MAP = {
+  snake: snakeCode, breakout: breakoutCode, dodger: dodgerCode,
+  maze: mazeCode, pong: pongCode, flappy: flappyCode, space: spaceCode,
+  mario: marioCode, f1: f1Code
 };
 const MAX_CONSOLE = 100;
 const INITIAL_CODE = `// Welcome to GyanBit Studio!
@@ -248,7 +250,7 @@ export default function App() {
 
         {/* ── RIGHT: OLED + Pad + Ref ────────────────── */}
         <div className="right-panel">
-          <OLEDScreen runtimeRef={runtimeRef} running={running} code={code} />
+          <OLEDScreen runtimeRef={runtimeRef} running={running} code={code} onStop={handleStop} />
           <GamePad runtimeRef={runtimeRef} heldButtons={heldButtons} />
           <div className="sidebar-ref" style={{ flex: 1, overflowY: 'auto', minHeight: 0 }}>
             <PinMap />
