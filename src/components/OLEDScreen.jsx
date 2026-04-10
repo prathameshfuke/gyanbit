@@ -5,7 +5,7 @@ const W = 128, H = 64;
 const CANVAS_W = W * SCALE;  // 512px
 const CANVAS_H = H * SCALE;  // 256px
 
-export default function OLEDScreen({ runtimeRef, running, code }) {
+export default function OLEDScreen({ runtimeRef, running, code, onStop }) {
   const canvasRef = useRef(null);
 
   // Draw pixel buffer to canvas — called every RAF frame
@@ -101,23 +101,47 @@ export default function OLEDScreen({ runtimeRef, running, code }) {
               height={CANVAS_H}
               style={{ display: 'block', imageRendering: 'pixelated', width: '100%', height: 'auto' }}
             />
-            {running && code && code.includes('INITIALIZING JS-DOS') && (
-              <iframe 
-                id="doom-iframe"
-                src="/doom/index.html" 
-                title="DOOM DOS"
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                  border: 'none',
-                  zIndex: 10,
-                  background: '#000'
-                }}
-              />
-            )}
+            {(() => {
+              const dosMatch = code && code.match(/\/\/\s*@dos-folder:\s*(\w+)/);
+              const dosFolder = dosMatch ? dosMatch[1] : null;
+
+              if (running && dosFolder) {
+                return (
+                   <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 10, background: '#000' }}>
+                    <iframe 
+                      id="doom-iframe"
+                      src={`/${dosFolder}/index.html`} 
+                      title="DOS EMULATOR"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        border: 'none',
+                      }}
+                    />
+                    <button 
+                      onClick={onStop} 
+                      style={{ 
+                        position: 'absolute', 
+                        top: '6px', 
+                        right: '6px', 
+                        padding: '3px 6px', 
+                        background: 'var(--red)', 
+                        color: '#000', 
+                        border: '1px solid #000', 
+                        cursor: 'pointer', 
+                        zIndex: 11, 
+                        fontFamily: 'var(--font-pixel)', 
+                        fontSize: '7px',
+                        boxShadow: '2px 2px 0 #000'
+                      }}
+                    >
+                      STOP
+                    </button>
+                  </div>
+                );
+              }
+              return null;
+            })()}
           </div>
         </div>
 

@@ -1,0 +1,91 @@
+
+
+
+
+
+                  ----------  Mario Brothers VGA  ----------
+                                 Version 1.0
+                                Dave Sharpless
+                                   11/26/90
+
+        Thank you for downloading Mario Brothers VGA. Better yet, thank you for
+    reading the doc file!  This doc file includes : how to play, game
+    background info, and how to register.
+
+
+    I. How to play
+
+              Mario Bros will run on virtually any computer with VGA support.
+         Just enter MARIO at dos prompt and if everything's o.k.  the title
+         screen will come up.
+
+         Press any key to move on to the high score table (at this point
+         MARIO.HIS will be read from/created on your disk).
+
+         On this screen you can do the following :
+
+         Q : quit and go back to DOS
+
+         P : Select one or two(registered) player mode.
+
+         K : Redefine game play keys.
+
+         space : begin play
+
+         Game play :
+
+              Your main objective is to keep the area free of pests.  To do
+         this, you must jump and bump the layer under the pest to flip it over.
+         Once flipped you have a limited amount of time to get on the same
+         level as the little creature and 'kick' it off.
+
+              You'll encounter numerous obstacles as well as various types of
+         creatures.
+
+
+
+
+    II. Game background
+
+              I started on this game around the time Joust VGA registrations
+         started coming in (about 6/20/90). Using a couple of small assembly
+         language routines from Joust, my graphics editor, and the gained
+         programming experience, made this project a lot faster than Joust.
+
+
+
+
+
+
+
+
+
+
+        III. Registering information
+
+            I hope you enjoy Mario Brothers VGA, if you would like to
+        have a SIMULTANEOUS TWO PLAYER MODE version of Mario Brothers VGA,
+        send $15.00 to my address below.  You'll find that working as a team,
+        you'll be able to reach higher levels then before.
+
+
+            Even if you're not registering, write and tell me what you think
+        about it!
+
+
+        Oh, by the way...If you were putting off registering Joust VGA, wait
+        no more!  Send $25 and I'll register both Joust VGA (V 1.2) and Mario
+        Brothers VGA (V 1.0)
+
+                                Dave Sharpless
+                                11643 Vermilion Rd.
+                                Oberlin, OH 44074
+-----------------------------------------------------------------------------
+Update Information :
+
+Version 1.0 - 1st release  11/26/90
+
+  1.  Finished game
+
+  2.  Wrote .DOC file
+

@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GyanBit — The Official Engineering Handbook</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@300;400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF3E3E;
+            --secondary: #00F0FF;
+            --bg: #050505;
+            --surface: #111111;
+            --surface-light: #1A1A1A;
+            --text: #FFFFFF;
+            --text-dim: #888888;
+            --grid: rgba(255, 255, 255, 0.05);
+            --scanline: rgba(255, 255, 255, 0.03);
+            --accent: #FFD700;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #1a1a1a;
+            color: var(--text);
+            line-height: 1.4;
+        }
+
+        /* ── PAGE DEFINITION ────────────────────────────────── */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm; /* Strict A4 Height */
+            padding: 20mm;
+            margin: 10px auto;
+            background: var(--bg);
+            background-image: linear-gradient(var(--grid) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 25px 25px;
+            position: relative;
+            overflow: hidden; /* Prevent bleed onto next page */
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #333;
+        }
+
+        .page::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0.2;
+        }
+
+        @media print {
+            body { background: none; margin: 0; padding: 0; }
+            .page {
+                margin: 0;
+                border: none;
+                page-break-after: always;
+                box-shadow: none;
+                -webkit-print-color-adjust: exact;
+            }
+        }
+
+        /* ── TYPOGRAPHY ────────────────────────────────────── */
+        .retro-text {
+            font-family: 'Press Start 2P', cursive;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 28pt; color: var(--primary); margin-bottom: 20pt; }
+        h2 { font-size: 20pt; color: var(--secondary); margin: 25pt 0 10pt; border-bottom: 2px solid var(--primary); padding-bottom: 5pt; }
+        h3 { font-size: 12pt; margin: 15pt 0 8pt; color: var(--primary); text-transform: uppercase; }
+        p { margin-bottom: 12pt; font-size: 11pt; color: #ddd; text-align: justify; }
+
+        .code { font-family: 'Fira Code', monospace; background: #222; padding: 2pt 4pt; border-radius: 3pt; color: var(--secondary); font-size: 9pt; }
+        
+        /* ── COMPONENTS ─────────────────────────────────────── */
+        .footer-info {
+            position: absolute;
+            bottom: 12mm;
+            left: 20mm;
+            right: 20mm;
+            border-top: 1px solid #333;
+            padding-top: 8pt;
+            display: flex;
+            justify-content: space-between;
+            font-size: 9pt;
+            color: var(--text-dim);
+            font-family: 'Fira Code', monospace;
+        }
+
+        .logo-main {
+            width: 100mm;
+            margin: 15mm auto 8mm; /* Reduced from 40mm */
+            display: block;
+        }
+
+        .hero-photo {
+            width: 90mm;
+            margin: 0 auto;
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(0, 240, 255, 0.2);
+            border: 2px solid var(--surface-light);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12pt;
+            margin: 15pt 0;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid #444;
+            padding: 12pt;
+            border-radius: 4px;
+        }
+
+        .card-title {
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 10pt;
+            margin-bottom: 4pt;
+        }
+
+        .api-row {
+            display: grid;
+            grid-template-columns: 120pt 1fr;
+            gap: 10pt;
+            padding: 6pt 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .code-block {
+            background: #000;
+            color: #d4d4d4;
+            padding: 15pt;
+            border-left: 3px solid var(--primary);
+            font-family: 'Fira Code', monospace;
+            font-size: 9pt;
+            white-space: pre-wrap;
+            margin: 10pt 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .warning-strip {
+            background: #4a0000;
+            border: 1px solid var(--primary);
+            color: #fff;
+            padding: 10pt;
+            font-size: 10pt;
+            margin: 20pt 0;
+            text-align: center;
+        }
+
+        .diag-wrap {
+            border: 1px dashed #444;
+            background: rgba(0,0,0,0.3);
+            padding: 10pt;
+            margin: 15pt 0;
+            text-align: center;
+        }
+
+        .step-pill {
+            display: inline-block;
+            background: var(--secondary);
+            color: #000;
+            padding: 2pt 8pt;
+            font-weight: 800;
+            font-size: 9pt;
+            margin-right: 5pt;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 01: COVER -->
+    <div class="page cover" style="justify-content: flex-start; text-align: center; background: #000;">
+        <img src="public/images/logo_transparent.png" alt="GyanBit" class="logo-main" style="width: 90mm; margin-top: 20mm; margin-bottom: 10mm;">
+        <h1 class="retro-text" style="font-size: 20pt; margin-bottom: 15pt;">OFFICIAL HANDBOOK</h1>
+        <p style="text-align: center; color: var(--secondary); letter-spacing: 2pt; font-family: 'Space Grotesk'; font-weight: 500; font-size: 11pt; margin-bottom: 15pt;">DESIGNED IN INDIA • ENGINEERED FOR THE WORLD</p>
+        
+        <img src="public/images/front.jpeg" alt="GyanBit Unit" class="hero-photo" style="width: 75mm; margin-top: 5mm; box-shadow: 0 0 30px rgba(0, 240, 255, 0.15);">
+        
+        <div style="margin-top: 15mm;">
+            <div style="background: var(--primary); color: #fff; display: inline-block; padding: 4pt 12pt; font-family: 'Press Start 2P'; font-size: 7pt;">REV 3.1.1</div>
+            <p style="margin-top: 10pt; font-size: 10pt; font-weight: 400; color: #fff; opacity: 0.8; letter-spacing: 1pt;">EVERYTHING YOU NEED TO BUILD & PLAY</p>
+        </div>
+
+        <div class="footer-info">
+            <span>UNAUTHORIZED REPRODUCTION PROHIBITED</span>
+            <span>MMCOE GYANBIT LABS</span>
+        </div>
+    </div>
+
+    <!-- PAGE 02: PHILOSOPHY -->
+    <div class="page">
+        <h2 class="retro-text">01. PHILOSOPHY</h2>
+        <p>GyanBit was born from a singular mission: to strip away the "black box" of modern consumer electronics. In a world of proprietary software and locked bootloaders, GyanBit is a radical act of openness. This console does not belong to the manufacturer; it belongs to the programmer who builds with it.</p>
+        
+        <h3>THE CREATOR'S JOURNEY</h3>
+        <p>Unlike standard consoles where you are a consumer of media, GyanBit asks you to be the architect. We combine the power of modern web technologies with the gritty reality of bare-metal embedded circuits. Whether you are learning your first loop in JavaScript or optimizing frequency cycles in MicroPython, GyanBit scales with your curiosity.</p>
+
+        <div class="card" style="border-color: var(--secondary); background: rgba(0, 240, 255, 0.03);">
+            <div class="card-title" style="color: var(--secondary); font-family: 'Press Start 2P'; font-size: 7pt;">MISSION OBJECTIVE</div>
+            <p style="font-size: 10pt; margin-bottom: 0;">Provide every student with the tools to move from consumption to creation, utilizing sustainable materials and open protocols.</p>
+        </div>
+
+        <div class="footer-info">
+            <span>GYANBIT_HANDBOOK_01</span>
+            <span>PAGE 02</span>
+        </div>
+    </div>
+
+    <!-- PAGE 03: HARDWARE INTERNALS -->
+    <div class="page">
+        <h2 class="retro-text">02. HARDWARE</h2>
+        <p>The heart of GyanBit is the Raspberry Pi RP2040. This dual-core microcontroller provides the horsepower needed to drive a monochrome OLED at a smooth 30 frames per second while handling input interrupts and PWM audio.</p>
+
+        <img src="public/images/top.jpeg" alt="GyanBit Top" style="width: 140mm; margin: 5mm auto; border-radius: 8px;">
+
+        <h3>TECHNICAL SPECIFICATIONS</h3>
+        <div class="feature-grid">
+            <div class="card">
+                <div class="card-title">RP2040 MCU</div>
+                <div style="font-size: 9pt; color: #aaa;">Dual-core ARM Cortex-M0+ at 133MHz. High-performance PIO state machines.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">SH1106 OLED</div>
+                <div style="font-size: 9pt; color: #aaa;">1.3-inch monochrome display. 128x64 resolution. I2C High-speed interface (400kHz).</div>
+            </div>
+        </div>
+
+        <h3>PINOUT MAP (GP)</h3>
+        <div style="font-family: 'Fira Code', monospace; font-size: 9pt;">
+            <div class="api-row"><div>GP15</div><div>Audio PWM Output</div></div>
+            <div class="api-row"><div>GP2 / GP3</div><div>D-Pad Up / Down</div></div>
+            <div class="api-row"><div>GP4 / GP5</div><div>D-Pad Left / Right</div></div>
+            <div class="api-row"><div>GP6 / GP7</div><div>Action Button A / B</div></div>
+        </div>
+
+        <div class="footer-info">
+            <span>GYANBIT_HANDBOOK_02</span>
+            <span>PAGE 03</span>
+        </div>
+    </div>
+
+    <!-- PAGE 04: SOFTWARE ARCHITECTURE -->
+    <div class="page">
+        <h2 class="retro-text">03. ARCHITECTURE</h2>
+        <p>GyanBit Studio runs a custom JavaScript-to-MicroPython transpiler. This allows you to code in the familiar language of the web (JS) while producing fast code for the console.</p>
+
+        <h3>THE RUNTIME LIFECYCLE</h3>
+        <div class="card">
+            <div style="margin-bottom: 12pt;">
+                <span class="step-pill">01</span> <strong>Validation:</strong> Checks for errors in your code.
+            </div>
+            <div style="margin-bottom: 12pt;">
+                <span class="step-pill">02</span> <strong>Transpilation:</strong> Your JS code becomes Python code.
+            </div>
+            <div style="margin-bottom: 12pt;">
+                <span class="step-pill">03</span> <strong>Upload:</strong> The code travels through the USB cable to the console.
+            </div>
+            <div>
+                <span class="step-pill">04</span> <strong>Execution:</strong> The console starts playing your game instantly!
+            </div>
+        </div>
+
+        <h3 style="margin-top: 20pt;">THE 30 FPS LOOP</h3>
+        <p>GyanBit runs your code 30 times every single second! This is what makes movements look smooth. In every "tick," we check buttons, move players, and draw the screen.</p>
+
+        <div class="code-block">
+bit.loop(() => {
+    // 1. Check buttons (Input)
+    // 2. Clear previous frame
+    // 3. Draw new pixels
+});
+        </div>
+
+        <div class="footer-info">
+            <span>GYANBIT_HANDBOOK_03</span>
+            <span>PAGE 04</span>
+        </div>
+    </div>
+
+    <!-- PAGE 05: THE bit.* API -->
+    <div class="page">
+        <h2 class="retro-text">04. API GUIDE</h2>
+        <p>The <span class="code">bit</span> object is like a magic box of tools. You use it to tell the screen what to show and hear what the buttons are doing.</p>
+
+        <h3>DRAWING TOOLS</h3>
+        <div style="font-size: 10pt;">
+            <div class="api-row"><div>bit.clear()</div><div>Clean the screen. Like washing a chalkboard!</div></div>
+            <div class="api-row"><div>bit.dot(x, y)</div><div>Draw one tiny point.</div></div>
+            <div class="api-row"><div>bit.line(x1,y1,x2,y2)</div><div>Connect two points with a line.</div></div>
+            <div class="api-row"><div>bit.fill(x,y,w,h)</div><div>Draw a solid color box.</div></div>
+            <div class="api-row"><div>bit.fillCircle(c,r)</div><div>Draw a solid circle (for balls or players).</div></div>
+        </div>
+
+        <h3>BUTTON TOOLS</h3>
+        <div class="code-block">
+if (bit.isHeld('up')) { 
+  // Do something when Up is pressed!
+}
+        </div>
+
+        <h3>SOUND TOOLS</h3>
+        <div class="api-row"><div>bit.beep(hz, ms)</div><div>Makes a "BEEP" sound. High HZ = Squeaky, Low HZ = Grumbly.</div></div>
+
+        <div class="footer-info">
+            <span>GYANBIT_HANDBOOK_04</span>
+            <span>PAGE 05</span>
+        </div>
+    </div>
+
+    <!-- PAGE 06: TUTORIAL 1 - BOUNCING BALL -->
+    <div class="page">
+        <h2 class="retro-text">05. BOUNCING BALL</h2>
+        <p>Let's make a ball that bounces around the screen! We need to remember three things: Where it is, and how fast it is moving.</p>
+
+        <h3>1. SET THE START</h3>
+        <div class="code-block">
+let x = 64;  // Left-Right position
+let y = 32;  // Up-Down position
+let dx = 2;  // Speed (Left-Right)
+let dy = 2;  // Speed (Up-Down)
+        </div>
+
+        <h3>2. MAKE IT MOVE</h3>
+        <div class="code-block">
+bit.loop(() => {
+    bit.clear();
+    
+    // Step 1: Update position
+    x += dx;
+    y += dy;
+    
+    // Step 2: Hit a wall? Turn around!
+    if (x <= 0 || x >= 127) dx = -dx;
+    if (y <= 0 || y >= 63)  dy = -dy;
+    
+    // Step 3: Draw the ball!
+    bit.fillCircle(x, y, 4);
+});
+        </div>
+
+        <div class="footer-info">
+            <span>GYANBIT_HANDBOOK_05</span>
+            <span>PAGE 06</span>
+        </div>
+    </div>
+
+    <!-- PAGE 07: TUTORIAL 2 - PADDLE POWER (PART A) -->
+    <div class="page">
+        <h2 class="retro-text">06. PADDLE POWER</h2>
+        <p>Now, let's make the game interactive! We are going to add a <strong>Paddle</strong> that YOU can move using the buttons. It's like having a digital tennis racket!</p>
+
+        <h3>1. CREATE THE PADDLE</h3>
+        <p>We need to tell the GyanBit where the paddle starts. Think of <span class="code">paddleY</span> as the "Up and Down" position of your racket.</p>
+        <div class="code-block">
+let paddleY = 24;      // Start near the middle
+const PADDLE_HEIGHT = 16;
+        </div>
+
+        <h3>2. LISTENING TO BUTTONS</h3>
+        <p>We want the paddle to move when we press the <strong>UP</strong> and <strong>DOWN</strong> buttons. We also need to make sure it doesn't float off the screen!</p>
+        <div class="code-block">
+// Move UP if the button is held
+if (bit.isHeld('up') && paddleY > 0) {
+    paddleY -= 3;
+}
+
+// Move DOWN if the button is held
+if (bit.isHeld('down') && paddleY < 64 - PADDLE_HEIGHT) {
+    paddleY += 3;
+}
+
+// Draw the paddle at the left edge
+bit.fill(0, paddleY, 4, PADDLE_HEIGHT);
+        </div>
+
+        <div class="footer-info">
+            <span>GYANBIT_HANDBOOK_06</span>
+            <span>PAGE 07</span>
+        </div>
+    </div>
+
+    <!-- PAGE 08: TUTORIAL 2 - PADDLE POWER (PART B) -->
+    <div class="page">
+        <h2 class="retro-text">07. THE BOUNCE TEST</h2>
+        <p>This is the most important part! We want to tell the ball: "If you touch my paddle, bounce back!"</p>
+
+        <h3>THE LOGIC</h3>
+        <p>We check if the ball is hitting the left side AND if it is at the same height as our paddle. If both are true... <strong>PING!</strong></p>
+        
+        <div class="code-block">
+if (x <= 4 && y >= paddleY && y <= paddleY + PADDLE_HEIGHT) {
+    dx = -dx;          // Hit the paddle! Turn around!
+    bit.beep(800, 50); // Play a fun "Ping" sound
+}
+        </div>
+
+        <div class="diag-wrap" style="padding: 20px; background: #000; border: 2px solid var(--secondary);">
+            <div class="retro-text" style="font-size: 8pt; color: var(--secondary); margin-bottom: 15pt;">HOW COLLISION WORKS</div>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 30pt;">
+                <div style="text-align: center;">
+                    <div style="width: 8mm; height: 20mm; background: var(--secondary); border: 2px solid #fff; margin: 0 auto;"></div>
+                    <div style="font-size: 8pt; margin-top: 5pt; color: var(--secondary);">PADDLE</div>
+                </div>
+                <div style="font-size: 20pt; color: #fff;">⚡</div>
+                <div style="text-align: center;">
+                    <div style="width: 10mm; height: 10mm; background: var(--primary); border-radius: 50%; border: 2px solid #fff; margin: 0 auto;"></div>
+                    <div style="font-size: 8pt; margin-top: 5pt; color: var(--primary);">BALL</div>
+                </div>
+            </div>
+            <p style="font-size: 9pt; color: #888; margin-top: 15pt; text-align: center;">"When the Ball hits the Paddle, it triggers a Bounce!"</p>
+        </div>
+
+        <div class="footer-info">
+            <span>GYANBIT_HANDBOOK_07</span>
+            <span>PAGE 08</span>
+        </div>
+    </div>
+
+    <!-- PAGE 09: GAME GALLERY -->
+    <div class="page">
+        <h2 class="retro-text">08. GAME GALLERY</h2>
+        <p>Want to see what's possible? Check out the built-in games! You can read their code to learn expert secrets.</p>
+
+        <div class="feature-grid">
+            <div class="card">
+                <div class="card-title">SNAKE</div>
+                <div style="font-size: 9pt;">Eat the dots and grow longer. Don't hit yourself!</div>
+            </div>
+            <div class="card">
+                <div class="card-title">SPACE INVADERS</div>
+                <div style="font-size: 9pt;">Protect the planet from falling enemies!</div>
+            </div>
+            <div class="card">
+                <div class="card-title">FLAPPY BIRD</div>
+                <div style="font-size: 9pt;">Flap your wings and fly through the pipes.</div>
+            </div>
+            <div class="card">
+                <div class="card-title">DOOM CLONE</div>
+                <div style="font-size: 9pt;">Explore a 3D world on your tiny console!</div>
+            </div>
+        </div>
+
+        <h3>PRO TIP</h3>
+        <div class="warning-strip">
+            "Don't just play the games. Change them! Make the snake move super fast or make the bird jump extra high."
+        </div>
+
+        <div class="footer-info">
+            <span>GYANBIT_HANDBOOK_08</span>
+            <span>PAGE 09</span>
+        </div>
+    </div>
+
+    <!-- PAGE 10: BYTE BOT AI -->
+    <div class="page">
+        <h2 class="retro-text">09. BYTE BOT AI</h2>
+        <p>Stuck on a bug? Byte Bot is your personal coding teacher. Click the robot icon to start a chat!</p>
+
+        <h3>HOW TO ASK FOR HELP</h3>
+        <p>Byte Bot loves specific questions. Instead of "Fix my code," try these:</p>
+        <ul style="margin-left: 20pt; font-size: 10pt; color: var(--secondary);">
+            <li>"How do I make my ball move faster?"</li>
+            <li>"Why is my paddle falling off the screen?"</li>
+            <li>"Can you help me draw a star shape?"</li>
+        </ul>
+
+        <div class="diag-wrap" style="border-style: solid; border-color: var(--primary);">
+            <div style="font-family: 'Press Start 2P'; font-size: 8pt; color: var(--primary);">BYTE BOT MESSAGE</div>
+            <p style="font-size: 9pt; margin-top: 10pt; color: #fff;">"Always remember to clear your screen with <code>bit.clear()</code> before drawing something new!"</p>
+        </div>
+
+        <div class="footer-info">
+            <span>GYANBIT_HANDBOOK_09</span>
+            <span>PAGE 10</span>
+        </div>
+    </div>
+
+    <!-- PAGE 11: CARE & SAFETY -->
+    <div class="page">
+        <h2 class="retro-text">10. CARE & SAFETY</h2>
+        <p>Your GyanBit is a tough little machine, but it likes to be treated with respect!</p>
+
+        <div class="card">
+            <h3>BAMBOO CARE</h3>
+            <p>Your console is made of real bamboo! Keep it dry and clean with a soft cloth. Don't leave it in the hot sun.</p>
+        </div>
+
+        <div class="card" style="margin-top: 10pt;">
+            <h3>BATTERY TIPS</h3>
+            <p>Charge it using a standard USB cable. When the light goes out, it's ready for hours of fun!</p>
+        </div>
+
+        <div class="warning-strip" style="background: var(--bg); border: 2px solid var(--primary);">
+            <h2 class="retro-text" style="font-size: 12pt; border: none; margin: 0; padding-bottom: 10px;">YOU DID IT!</h2>
+            <p style="text-align: center; font-size: 10pt;">You are now a GyanBit Engineer. Go build something amazing!</p>
+        </div>
+
+        <div style="text-align: center; margin-top: 20mm;">
+            <img src="public/images/logo_transparent.png" alt="Logo" style="width: 40mm; opacity: 0.3;">
+        </div>
+
+        <div class="footer-info">
+            <span>GYANBIT_HANDBOOK_10</span>
+            <span>PAGE 11</span>
+        </div>
+    </div>
+
+</body>
+</html>
