@@ -5,7 +5,7 @@ const W = 128, H = 64;
 const CANVAS_W = W * SCALE;  // 512px
 const CANVAS_H = H * SCALE;  // 256px
 
-export default function OLEDScreen({ runtimeRef, running }) {
+export default function OLEDScreen({ runtimeRef, running, code }) {
   const canvasRef = useRef(null);
 
   // Draw pixel buffer to canvas — called every RAF frame
@@ -101,6 +101,23 @@ export default function OLEDScreen({ runtimeRef, running }) {
               height={CANVAS_H}
               style={{ display: 'block', imageRendering: 'pixelated', width: '100%', height: 'auto' }}
             />
+            {running && code && code.includes('INITIALIZING JS-DOS') && (
+              <iframe 
+                id="doom-iframe"
+                src="/doom/index.html" 
+                title="DOOM DOS"
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  border: 'none',
+                  zIndex: 10,
+                  background: '#000'
+                }}
+              />
+            )}
           </div>
         </div>
 

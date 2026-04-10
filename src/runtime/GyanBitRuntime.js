@@ -203,15 +203,28 @@ export class GyanBitRuntime {
   }
 
   // ── Button handling ───────────────────────────────────
+  _passToIframe(btn, isPressed) {
+    const map = { 'up': 38, 'down': 40, 'left': 37, 'right': 39, 'a': 17, 'b': 32, 'start': 13 };
+    const code = map[btn];
+    if (code) {
+      const iframe = document.getElementById('doom-iframe');
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage({ type: 'key', code, isPressed }, '*');
+      }
+    }
+  }
+
   pressButton(btn) {
     if (this._heldButtons.has(btn)) return; // already held
     this._heldButtons.add(btn);
     this._justPressed.add(btn);
+    this._passToIframe(btn, true);
     (this._pressHandlers[btn] || []).forEach(fn => { try { fn(); } catch { } });
   }
 
   releaseButton(btn) {
     this._heldButtons.delete(btn);
+    this._passToIframe(btn, false);
   }
 
   // ── Run / stop ────────────────────────────────────────

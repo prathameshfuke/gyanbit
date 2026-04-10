@@ -19,10 +19,11 @@ import mazeCode     from './games/maze.js';
 import pongCode     from './games/pong.js';
 import flappyCode   from './games/flappy.js';
 import spaceCode    from './games/space.js';
+import doomCode     from './games/doom.js';
 
 const GAME_MAP = { 
   snake: snakeCode, breakout: breakoutCode, dodger: dodgerCode, 
-  maze: mazeCode, pong: pongCode, flappy: flappyCode, space: spaceCode 
+  maze: mazeCode, pong: pongCode, flappy: flappyCode, space: spaceCode, doom: doomCode 
 };
 const MAX_CONSOLE = 100;
 const INITIAL_CODE = `// Welcome to GyanBit Studio!
@@ -96,6 +97,8 @@ export default function App() {
       ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right',
       z: 'a', Z: 'a', x: 'b', X: 'b', Enter: 'start', ' ': 'start',
       w: 'up', s: 'down', a: 'left', d: 'right',
+      W: 'up', S: 'down', A: 'left', D: 'right',
+      k: 'a', K: 'a', l: 'b', L: 'b'
     };
     const onKeyDown = (e) => {
       // Don't intercept if focus is on the editor or any input
@@ -245,7 +248,7 @@ export default function App() {
 
         {/* ── RIGHT: OLED + Pad + Ref ────────────────── */}
         <div className="right-panel">
-          <OLEDScreen runtimeRef={runtimeRef} running={running} />
+          <OLEDScreen runtimeRef={runtimeRef} running={running} code={code} />
           <GamePad runtimeRef={runtimeRef} heldButtons={heldButtons} />
           <div className="sidebar-ref" style={{ flex: 1, overflowY: 'auto', minHeight: 0 }}>
             <PinMap />

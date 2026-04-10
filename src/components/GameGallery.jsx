@@ -80,6 +80,15 @@ const ICONS = {
     [7,2,'#ff2244'],
     [5,4,'#ffffff'], // bullet
   ],
+  doom: [
+    [4,6,'#aaaaaa'],[5,6,'#aaaaaa'], // gun barrel
+    [4,7,'#aaaaaa'],[5,7,'#aaaaaa'], // gun base
+    [2,3,'#ff2244'],[3,3,'#ff2244'], // monster
+    [2,4,'#ff2244'],[3,4,'#ff2244'], // monster
+    [0,1,'#ffffff'],[0,2,'#ffffff'],[0,3,'#ffffff'],[0,4,'#ffffff'], // left wall
+    [9,1,'#ffffff'],[9,2,'#ffffff'],[9,3,'#ffffff'],[9,4,'#ffffff'], // right wall
+    [4,4,'#ffcc00'],[5,4,'#ffcc00'], // flash
+  ],
 };
 
 const GAMES = [
@@ -90,6 +99,7 @@ const GAMES = [
   { id: 'pong',     name: 'PONG',     tagline: 'BEAT THE AI!',       accent: '#ff6600', file: 'pong'     },
   { id: 'flappy',   name: 'FLAPPY',   tagline: 'FLAP TO SURVIVE',    accent: '#ffcc00', file: 'flappy'   },
   { id: 'space',    name: 'SPACE',    tagline: 'DEFEND EARTH',       accent: '#ff2244', file: 'space'    },
+  { id: 'doom',     name: 'DOOM',     tagline: 'RIP AND TEAR',       accent: '#ff0033', file: 'doom'     },
 ];
 
 export default function GameGallery({ onLoad, onNew }) {

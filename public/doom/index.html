@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>Play DOOM</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./app.css">
+  <script type="text/javascript" src="./js-dos-api.js"></script>
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      overflow: hidden;
+    }
+    #DOOM {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      width: 100vw;
+      height: 100vh;
+      margin: 0 !important;
+    }
+    #DOOM > .dosbox-container { 
+      width: 100%; 
+      height: 100%; 
+    }
+    #DOOM > .dosbox-container > .dosbox-overlay { 
+      background: none; 
+    }
+    #DOOM > .dosbox-container > .dosbox-overlay > .dosbox-start {
+      border-radius: 6px;
+      background-color: rgba(90, 90, 90, 0.8);
+      padding: 10px;
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      width: 80%;
+      margin: auto;
+      margin-top: 20%;
+      cursor: pointer;
+    }
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain;
+    }
+  </style>
+  </head>
+  <body>
+    <div id="DOOM" class="dosbox-default"></div>
+
+<script type="text/javascript">
+  var ciObj = null;
+  var dosbox_DOOM = new Dosbox({
+    id: "DOOM",
+    onload: function (dosbox) {
+      dosbox_DOOM.run("./DOOM-@evilution.zip", "./DOOM/DOOM.EXE");
+    }
+  });
+
+  window.addEventListener("message", function(e) {
+      if(e.data && e.data.type === 'key') {
+          var code = e.data.code;
+          var isPressed = e.data.isPressed;
+          
+          if(ciObj && ciObj.simulateKeyEvent) {
+              ciObj.simulateKeyEvent(code, isPressed);
+          } else {
+              var ev = new KeyboardEvent(isPressed ? 'keydown' : 'keyup', { bubbles: true, cancelable: true });
+              Object.defineProperty(ev, 'keyCode', { get: function() { return code; } });
+              Object.defineProperty(ev, 'which', { get: function() { return code; } });
+              document.dispatchEvent(ev);
+              var canvas = document.querySelector('canvas');
+              if(canvas) canvas.dispatchEvent(ev);
+          }
+      }
+  });
+</script>
+  </body>
+</html>

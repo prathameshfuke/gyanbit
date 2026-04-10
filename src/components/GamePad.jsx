@@ -21,7 +21,7 @@ export default function GamePad({ runtimeRef, heldButtons }) {
     <div className="gamepad-wrap">
       <div className="section-header">
         <span className="dot" style={{ background: 'var(--cyan)' }} />
-        GAMEPAD — Keyboard: ↑↓←→ Z=A X=B Enter=START
+        GAMEPAD — Keyboard: WASD=Move K=A L=B Enter=START
       </div>
 
       <div className="pad-area">
