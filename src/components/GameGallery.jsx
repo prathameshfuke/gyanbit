@@ -1,8 +1,6 @@
 import React from 'react';
 
-// Simple pixel icon renderer using inline SVG rects — reliable across all browsers
 function PixelIcon({ pixels, size = 4 }) {
-  // pixels = array of [col, row, color?]
   return (
     <svg width={10 * size} height={8 * size} style={{ display: 'block' }}>
       {pixels.map(([c, r, color = 'currentColor'], i) => (
@@ -12,110 +10,50 @@ function PixelIcon({ pixels, size = 4 }) {
   );
 }
 
-// Each game's pixel art icon: [col, row, optionalColor]
 const ICONS = {
-  snake: [
-    [1,1],[2,1],[3,1],[4,1],[5,1],        // snake body horizontal
-    [5,2],[5,3],[5,4],                      // snake turn down
-    [4,4],[3,4],[2,4],[1,4],               // snake bottom
-    [1,3],[1,2],                            // snake up
-    [7,2,'#ff2244'],                        // apple
-    [7,3,'#ff2244'],
+  arcade_menu: [
+    [1, 1], [2, 1], [3, 1], [6, 1], [7, 1], [8, 1],
+    [1, 2], [3, 2], [6, 2], [8, 2],
+    [1, 3], [2, 3], [3, 3], [6, 3], [7, 3], [8, 3],
+    [1, 5, '#39ff14'], [2, 5, '#39ff14'], [3, 5, '#39ff14'],
+    [6, 5, '#ff7a00'], [7, 5, '#ff7a00'], [8, 5, '#ff7a00'],
+    [4, 7, '#ffffff'], [5, 7, '#ffffff'],
   ],
-  breakout: [
-    [0,0],[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],  // brick row 1
-    [0,1],[1,1],[2,1],[3,1],[4,1],[5,1],[6,1],[7,1],[8,1],  // brick row 2
-    [0,2],[1,2],[2,2],[3,2],[4,2],[5,2],[6,2],[7,2],[8,2],  // brick row 3
-    [3,5,'#ffffff'],[4,5,'#ffffff'],        // ball
-    [1,7],[2,7],[3,7],[4,7],[5,7],[6,7],   // paddle
-  ],
-  dodger: [
-    [2,0],[3,0],                            // rock
-    [5,1],[6,1],[7,1],
-    [0,2],[1,2],
-    [3,3],[4,3],[5,3],[6,3],
-    [1,5],[2,5],                            // rock
-    [4,6,'#39ff14'],[5,6,'#39ff14'],        // player
-    [4,7,'#39ff14'],[5,7,'#39ff14'],
-  ],
-  maze: [
-    // Simplified maze grid outline
-    [0,0],[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],
-    [0,0],[0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[0,7],
-    [8,0],[8,1],[8,2],[8,3],[8,4],[8,5],[8,6],[8,7],
-    [0,7],[1,7],[2,7],[3,7],[4,7],[5,7],[6,7],[7,7],
-    // inner walls
-    [2,2],[3,2],[4,2],
-    [2,2],[2,3],[2,4],
-    [4,4],[5,4],[6,4],
-    [6,4],[6,5],[6,6],
-    [1,1,'#39ff14'],  // player
-    [7,6,'#ff00ff'], // exit
-  ],
-  pong: [
-    [0,1],[0,2],[0,3],[0,4],[0,5],  // left paddle
-    [8,2],[8,3],[8,4],              // right paddle
-    [4,3,'#ffffff'],[5,3,'#ffffff'],// ball
-    // dash center line
-    [4,0,'#333344'],[4,2,'#333344'],[4,4,'#333344'],[4,6,'#333344'],
-  ],
-  flappy: [
-    [1,3,'#ffcc00'],[2,3,'#ffcc00'],[3,3,'#ffcc00'], // bird body
-    [4,3,'#ff5500'],[4,4,'#ff5500'], // beak
-    [1,2,'#ffffff'], // wing
-    // top pipe
-    [6,0,'#33ff33'],[7,0,'#33ff33'],[8,0,'#33ff33'],
-    [6,1,'#33ff33'],[7,1,'#33ff33'],[8,1,'#33ff33'],
-    [6,2,'#33ff33'],[8,2,'#33ff33'],
-    // bottom pipe
-    [6,6,'#33ff33'],[7,6,'#33ff33'],[8,6,'#33ff33'],
-    [6,7,'#33ff33'],[7,7,'#33ff33'],[8,7,'#33ff33'],
-  ],
-  space: [
-    [4,7,'#39ff14'],[5,7,'#39ff14'],[6,7,'#39ff14'], // player base
-    [5,6,'#39ff14'], // canon
-    [1,1,'#ff2244'],[2,1,'#ff2244'],[3,1,'#ff2244'], // alien 1
-    [2,2,'#ff2244'],
-    [6,1,'#ff2244'],[7,1,'#ff2244'],[8,1,'#ff2244'], // alien 2
-    [7,2,'#ff2244'],
-    [5,4,'#ffffff'], // bullet
-  ],
-  f1: [
-    // F1 car body
-    [4,4,'#ffffff'],[5,4,'#ffffff'], // rear wing
-    [3,5,'#ffffff'],[4,5,'#ffffff'],[5,5,'#ffffff'],[6,5,'#ffffff'], // main body
-    [3,6,'#ffffff'],[4,6,'#ffffff'],[5,6,'#ffffff'],[6,6,'#ffffff'],
-    [4,7,'#ffffff'],[5,7,'#ffffff'], // front
-    [2,5,'#ffffff'],[7,5,'#ffffff'], // side pods
-    // wheels
-    [1,4,'#aaaaaa'],[1,5,'#aaaaaa'], // rear left
-    [8,4,'#aaaaaa'],[8,5,'#aaaaaa'], // rear right
-    [3,7,'#aaaaaa'], // front left
-    [6,7,'#aaaaaa'], // front right
-    // motion lines
-    [0,3,'#333333'],[0,6,'#333333'],
-    [9,3,'#333333'],[9,6,'#333333'],
+  racing: [
+    [4, 0, '#ffffff'], [5, 0, '#ffffff'],
+    [3, 1], [4, 1], [5, 1], [6, 1],
+    [3, 2], [6, 2],
+    [2, 3], [3, 3], [4, 3], [5, 3], [6, 3], [7, 3],
+    [2, 4], [7, 4],
+    [3, 5], [4, 5], [5, 5], [6, 5],
+    [3, 6], [6, 6],
+    [2, 7], [3, 7], [6, 7], [7, 7],
   ],
 };
 
 const GAMES = [
-  { id: 'snake',    name: 'SNAKE',    tagline: 'EAT · GROW · DIE',   accent: '#39ff14', file: 'snake'    },
-  { id: 'breakout', name: 'BREAKOUT', tagline: 'SMASH THE BRICKS',   accent: '#00ffff', file: 'breakout' },
-  { id: 'dodger',   name: 'DODGER',   tagline: 'DUCK THE ROCKS!',    accent: '#ffb700', file: 'dodger'   },
-  { id: 'maze',     name: 'MAZE',     tagline: 'FIND THE EXIT',      accent: '#ff00ff', file: 'maze'     },
-  { id: 'pong',     name: 'PONG',     tagline: 'BEAT THE AI!',       accent: '#ff6600', file: 'pong'     },
-  { id: 'flappy',   name: 'FLAPPY',   tagline: 'FLAP TO SURVIVE',    accent: '#ffcc00', file: 'flappy'   },
-  { id: 'space',    name: 'SPACE',    tagline: 'DEFEND EARTH',       accent: '#ff2244', file: 'space'    },
-  { id: 'f1',       name: 'F1 RACE',  tagline: 'PEDAL TO METAL!',    accent: '#ff0000', file: 'f1'       },
-  { id: 'mario',    name: 'MARIO',    tagline: 'CLASSIC BROS.',      accent: '#ffc107', file: 'mario', image: '/src/assets/mario_icon.png' },
+  {
+    id: 'arcade_menu',
+    name: 'GYANBIT MENU',
+    tagline: 'BOOT + MENU + MINI GAMES',
+    accent: '#39ff14',
+    file: 'arcade_menu'
+  },
+  {
+    id: 'racing',
+    name: 'RACING CLASSIC',
+    tagline: 'DODGE TRAFFIC · SURVIVE',
+    accent: '#ff7a00',
+    file: 'racing'
+  },
 ];
 
 export default function GameGallery({ onLoad, onNew }) {
   return (
     <div className="gallery-wrap">
-      <div class="section-header" style={{ color: 'var(--amber)', fontSize: '9px', padding: '10px 12px' }}>
+      <div className="section-header" style={{ color: 'var(--amber)', fontSize: '9px', padding: '10px 12px' }}>
         <span className="dot" style={{ background: 'var(--amber)' }} />
-        GAME GALLERY — Select a game to load
+        GAME GALLERY - Select a game to load
       </div>
 
       <div className="cards-row">
@@ -153,11 +91,7 @@ export default function GameGallery({ onLoad, onNew }) {
             }}
           >
             <div className="card-icon-wrap" style={{ background: g.accent, color: '#000' }}>
-              {g.image ? (
-                <img src={g.image} alt={g.name} style={{ width: '80%', height: '80%', objectFit: 'contain', imageRendering: 'pixelated' }} />
-              ) : (
-                <PixelIcon pixels={ICONS[g.id]} size={4} />
-              )}
+              <PixelIcon pixels={ICONS[g.id]} size={4} />
             </div>
 
             <div className="card-info">
