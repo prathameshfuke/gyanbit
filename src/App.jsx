@@ -12,10 +12,28 @@ import { generateMicroPython } from './runtime/MicroPythonGen.js';
 import { BOOT_CODE } from './assets/bootscreen.js';
 
 // Game source imports
+import snakeCode      from './games/snake.js';
+import breakoutCode   from './games/breakout.js';
+import dodgerCode     from './games/dodger.js';
+import mazeCode       from './games/maze.js';
+import pongCode       from './games/pong.js';
+import flappyCode     from './games/flappy.js';
+import spaceCode      from './games/space.js';
+import marioCode      from './games/mario.js';
+import f1Code         from './games/f1racing.js';
 import arcadeMenuCode from './games/arcade_menu.js';
 import racingCode     from './games/racing.js';
 
 const GAME_MAP = {
+  snake: snakeCode,
+  breakout: breakoutCode,
+  dodger: dodgerCode,
+  maze: mazeCode,
+  pong: pongCode,
+  flappy: flappyCode,
+  space: spaceCode,
+  mario: marioCode,
+  f1: f1Code,
   arcade_menu: arcadeMenuCode,
   racing: racingCode
 };

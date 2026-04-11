@@ -89,8 +89,8 @@ function drawRoad() {
 
     // Map segment index n to screen-Y (far=top, near=bottom)
     const t  = (n - 1) / (LOOK - 1);          // 1=far, 0=near
-    const sY = Math.round(HORIZON + (SH - 16 - HORIZON) * (1 - t));
-    if (sY < HORIZON || sY >= SH - 15) continue;
+    const sY = Math.round(HORIZON + (SH - 13 - HORIZON) * (1 - t));
+    if (sY < HORIZON || sY >= SH - 12) continue;
 
     // Road width grows as n decreases (near = wider)
     const roadW = Math.round(4 + (1 - t) * 52);  // 4px..56px
@@ -144,7 +144,7 @@ function drawOpps() {
     const relZ = o.z - pz;
     if (relZ < 80 || relZ > LOOK * 100) return;
     const t = 1 - (relZ / (LOOK * 100));       // 0=far, 1=near
-    const sY = Math.round(HORIZON + (SH - 16 - HORIZON) * t);
+    const sY = Math.round(HORIZON + (SH - 13 - HORIZON) * t);
     const roadW  = Math.round(4 + t * 52);
     const cX     = Math.round(SW/2 + (o.x - px) * roadW * 0.85);
     const cw = Math.max(4, Math.round(t * 14));
@@ -166,7 +166,7 @@ function drawPlayerCar() {
   const bob  = crashed ? ((Math.floor(crashT/2)%4)-2) : (bit.frame%8 < 4 ? 0 : 1);
   const lean = bit.isHeld('left') ? -3 : bit.isHeld('right') ? 3 : 0;
   const cx = SW/2 + lean + bob;
-  const cy = SH - 17;          // top of car
+  const cy = SH - 25;          // top of car
 
   // Draw as outline + filled cockpit for contrast
   // Rear wing

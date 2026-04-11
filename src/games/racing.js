@@ -55,8 +55,8 @@ function updatePlayer() {
   if (bit.isHeld('left')) playerX -= 3;
   if (bit.isHeld('right')) playerX += 3;
 
-  if (playerX < 10) playerX = 10;
-  if (playerX > 110) playerX = 110;
+  if (playerX < 20) playerX = 20;
+  if (playerX > 102) playerX = 102;
 }
 
 function updateObstacles() {
@@ -81,8 +81,11 @@ function drawRoad() {
   bit.line(18, 0, 18, 63);
   bit.line(110, 0, 110, 63);
 
-  for (let y = 0; y < 64; y += 10) {
-    bit.fill(62, (y + roadOffset) % 64, 4, 6);
+  const offset = roadOffset % 10;
+  for (let y = -10; y < 64; y += 10) {
+    if (y + offset >= 0 && y + offset <= 63) {
+      bit.fill(62, y + offset, 4, 6);
+    }
   }
 }
 

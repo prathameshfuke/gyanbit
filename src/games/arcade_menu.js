@@ -33,6 +33,10 @@ let lastInputFrame = 0;
 const SNAKE_CELL = 4;
 const SNAKE_COLS = 32;
 const SNAKE_ROWS = 16;
+const SNAKE_FOOD_MIN_X = 1;
+const SNAKE_FOOD_MAX_X = SNAKE_COLS - 2;
+const SNAKE_FOOD_MIN_Y = 2;
+const SNAKE_FOOD_MAX_Y = 13;
 let snake = [];
 let snakeDir = { x: 1, y: 0 };
 let snakeNextDir = { x: 1, y: 0 };
@@ -64,7 +68,10 @@ function rand(min, max) {
 function spawnSnakeFood() {
   let f;
   do {
-    f = { x: rand(0, SNAKE_COLS - 1), y: rand(1, SNAKE_ROWS - 1) };
+    f = {
+      x: rand(SNAKE_FOOD_MIN_X, SNAKE_FOOD_MAX_X),
+      y: rand(SNAKE_FOOD_MIN_Y, SNAKE_FOOD_MAX_Y)
+    };
   } while (snake.some((s) => s.x === f.x && s.y === f.y));
   snakeFood = f;
 }

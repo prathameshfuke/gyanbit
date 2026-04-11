@@ -7,6 +7,10 @@ export default `
 const COLS = 32, ROWS = 16, CS = 4;
 const HUD_H = 8; // top 8px for HUD
 const PLAY_ROWS = 14; // rows below HUD (y=8 to y=63)
+const APPLE_MIN_X = 1;
+const APPLE_MAX_X = COLS - 2;
+const APPLE_MIN_Y = 2;
+const APPLE_MAX_Y = ROWS - 2;
 
 let snake, dir, nextDir, apple, score, speed, tick, alive;
 
@@ -20,7 +24,12 @@ function init() {
 
 function spawnApple() {
   let a;
-  do { a = { x: bit.random(0,COLS-1), y: bit.random(1,ROWS-1) }; }
+  do {
+    a = {
+      x: bit.random(APPLE_MIN_X, APPLE_MAX_X),
+      y: bit.random(APPLE_MIN_Y, APPLE_MAX_Y)
+    };
+  }
   while (snake.some(s => s.x===a.x && s.y===a.y));
   apple = a;
 }
